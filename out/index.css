@@ -34,14 +34,14 @@
 /*定位*/
 .absolute, .head, .head
 .btnleft, #header > div, .panel, #navbar:after, .border:before, .bgborder:before, #panel1
-.search
-.txtbox:before, #header
+.list:before, .txtbox:before, #header
 .btn_login:before, #panel1
 .search:before, #panel1
 .applist:after, #panel1
 .applist
 .view_more
-i {
+i, #panel1
+.list > *:not(:first-child):before {
   position: absolute;
   left: 0;
   top: 0; }
@@ -530,10 +530,22 @@ a {
 .icon-menu:before {
   content: '\e601'; }
 
-/*general*/
-.panel[data-role=root] {
-  padding-bottom: 0; }
+/*复写*/
+#header {
+  position: fixed; }
 
+#mainbox {
+  overflow: initial; }
+  .onsidebox #mainbox {
+    overflow: hidden; }
+
+.panel {
+  height: initial;
+  overflow: initial; }
+  .panel[data-role=root] {
+    padding-bottom: 0; }
+
+/*general*/
 input {
   height: 32px;
   padding: 0 0.5em;
@@ -554,12 +566,10 @@ input {
     background: #dc313e; }
 
 .border, .bgborder, #panel1
-.search
-.txtbox {
+.list, .txtbox {
   position: relative; }
   .border:before, .bgborder:before, #panel1
-.search
-.txtbox:before {
+.list:before, .txtbox:before {
     content: '';
     width: 200%;
     height: 200%;
@@ -570,13 +580,17 @@ input {
     transform-origin: 0 0;
     z-index: 0; }
   .border > *, .bgborder > *, #panel1
-.search
-.txtbox > * {
+.list > *, .txtbox > * {
     position: relative;
     z-index: 1; }
 
-.bgborder {
+.bgborder, #panel1
+.list {
   background: #fff; }
+
+.txtbox
+input {
+  width: 100%; }
 
 /*头部*/
 #header
@@ -660,11 +674,6 @@ i {
 .txtbox {
       display: inline-block;
       width: 80%; }
-      #panel1
-.search
-.txtbox
-input {
-        width: 100%; }
   #panel1
 .content {
     padding: 10px; }
@@ -679,12 +688,12 @@ input {
 .nav
 .nav_item {
       display: inline-block;
-      width: 22%; }
+      width: 23%; }
       #panel1
 .nav
 .nav_item.focus
 img {
-        opacity: 0.8; }
+        opacity: 0.7; }
       #panel1
 .nav
 .nav_item
@@ -746,9 +755,7 @@ a {
       font-size: 14px; }
       #panel1
 .applist
-a.focus, #panel1
-.applist
-a.selected {
+a.focus {
         background: #f2f2f2; }
       #panel1
 .applist
@@ -761,9 +768,71 @@ img {
 .applist
 .view_more.selected {
       background: none; }
+      #panel1
+.applist
+.view_more.focus
+img
+, #panel1
+.applist
+.view_more.selected
+img {
+        opacity: 0.7; }
     #panel1
 .applist
 .view_more
 img {
       border-radius: 10%;
       border: 2px dotted #4892e6; }
+    #panel1
+.applist
+.view_more
+i {
+      color: #4892e6; }
+  #panel1
+.list {
+    padding: 1px; }
+    #panel1
+.list > * {
+      line-height: 30px;
+      padding: 7px; }
+      #panel1
+.list > *:not(:first-child) {
+        position: relative; }
+        #panel1
+.list > *:not(:first-child):before {
+          content: '';
+          width: 200%;
+          height: 200%;
+          border-top: 1px solid #ccc;
+          -webkit-transform: scale3d(0.5, 0.5, 1);
+          transform: scale3d(0.5, 0.5, 1);
+          -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+          z-index: 0; }
+        #panel1
+.list > *:not(:first-child) > * {
+          position: relative;
+          z-index: 1; }
+    #panel1
+.list > a {
+      display: block; }
+      #panel1
+.list > a.focus {
+        background: #f2f2f2; }
+  #panel1
+.goods_list
+h3
+i {
+    font-size: 12px;
+    font-weight: normal; }
+  #panel1
+.goods_list
+a
+span {
+    float: right;
+    color: #dc313e; }
+  #panel1
+.qq_verify
+.txtbox {
+    display: inline-block;
+    width: 79%; }

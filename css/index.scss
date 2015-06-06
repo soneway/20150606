@@ -6,13 +6,34 @@ $head_border-color: #ccc;
 $border-color: $head_border-color;
 $blue: #4892e6;
 $red: #dc313e;
+$gray: #f2f2f2;
 
 /*外部引入*/
 @import 'scss/ui', 'scss/iconmoon';
 
-/*general*/
+/*复写*/
+#header
+{
+    position: fixed;
+}
+
+
+#mainbox
+{
+    overflow: initial;
+
+    .onsidebox &
+    {
+        overflow: hidden;
+    }
+}
+
+
 .panel
 {
+    height: initial;
+    overflow: initial;
+
     &[data-role=root]
     {
         padding-bottom: 0;
@@ -20,6 +41,7 @@ $red: #dc313e;
 }
 
 
+/*general*/
 input
 {
     height: 32px;
@@ -58,6 +80,17 @@ input
 {
     background: #fff;
     @extend .border;
+}
+
+
+.txtbox
+{
+    @extend .border;
+
+    input
+    {
+        width: 100%;
+    }
 }
 
 
@@ -130,12 +163,6 @@ input
         {
             display: inline-block;
             width: 80%;
-            @extend .border;
-
-            input
-            {
-                width: 100%;
-            }
         }
     }
 
@@ -158,13 +185,13 @@ input
         .nav_item
         {
             display: inline-block;
-            width: 22%;
+            width: 23%;
 
             &.focus
             {
                 img
                 {
-                    opacity: 0.8;
+                    opacity: 0.7;
                 }
             }
 
@@ -238,9 +265,9 @@ input
             padding: $p;
             font-size: $font-size;
 
-            &.focus, &.selected
+            &.focus
             {
-                background: #f2f2f2;
+                background: $gray;
             }
 
             img
@@ -255,6 +282,11 @@ input
             &.focus, &.selected
             {
                 background: none;
+
+                img
+                {
+                    opacity: 0.7;
+                }
             }
 
             img
@@ -268,7 +300,67 @@ input
                 @extend %ph_palt;
                 @extend %ph_full;
                 @extend %ph_center;
+                color: $blue;
             }
         }
     }
+
+    .list
+    {
+        padding: 1px;
+        @extend .bgborder;
+
+        & > *
+        {
+            line-height: 30px;
+            padding: 7px;
+
+            &:not(:first-child)
+            {
+                @include mx_ptborder($color: $border-color, $trbl: top);
+            }
+        }
+
+        & > a
+        {
+            display: block;
+
+            &.focus
+            {
+                background: $gray;
+            }
+        }
+    }
+
+    .goods_list
+    {
+
+        h3
+        {
+            i
+            {
+                font-size: 12px;
+                font-weight: normal;
+            }
+        }
+
+        a
+        {
+            span
+            {
+                float: right;
+                color: $red;
+            }
+        }
+    }
+
+    .qq_verify
+    {
+        .txtbox
+        {
+            display: inline-block;
+            width: 79%;
+        }
+    }
+
 }
