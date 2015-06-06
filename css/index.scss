@@ -1,0 +1,99 @@
+﻿/*变量*/
+$head_height: 44px;
+$head_border-color: #ddd;
+
+/*项目变量*/
+$border-color: $head_border-color;
+
+/*外部引入*/
+@import 'scss/ui', 'scss/iconmoon';
+
+/*复写*/
+.btn
+{
+    border-radius: 0;
+    min-width: 0;
+    padding: 0 8px;
+    line-height: 32px;
+    background: #fff;
+    @include mx_ptborder($color: $border-color, $radius: 4px);
+    @include mx_box-shadow(none);
+
+    &.focus
+    {
+        background: #fafafa;
+    }
+}
+
+
+input
+{
+    height: 32px;
+    border: 1px solid $border-color;
+    padding: 0 0.5em;
+}
+
+
+/*头部*/
+#header
+{
+    .btn_login
+    {
+        margin: 6px 8px 0 0;
+    }
+
+    .roottitle
+    {
+        background: url(../images/logo.png) 8px center/ auto 26px no-repeat;
+    }
+}
+
+
+/*首页*/
+#panel1
+{
+    background: #f1f1f1;
+
+    .banner
+    {
+        img
+        {
+            width: 100%;
+            min-width: 320px;
+            max-width: 640px;
+        }
+    }
+
+    .notice
+    {
+        background: #fffce6;
+        line-height: 32px;
+
+        i
+        {
+            color: #f00;
+        }
+    }
+
+    .search
+    {
+        padding: 8px;
+        background: #fff;
+        @include mx_ptborder($color: $border-color, $trbl: bottom);
+
+        .txt_search
+        {
+            width: 82%;
+        }
+
+        .btn_search
+        {
+            display: inline-block;
+            line-height: 32px;
+            padding: 0 8px;
+            background: #4892e6;
+            color: #fff;
+            border-radius: 2px;
+        }
+    }
+}
