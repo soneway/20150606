@@ -1,6 +1,6 @@
 ﻿/*变量*/
 $head_height: 44px;
-$head_border-color: #ddd;
+$head_border-color: #ccc;
 
 /*项目变量*/
 $border-color: $head_border-color;
@@ -8,32 +8,32 @@ $border-color: $head_border-color;
 /*外部引入*/
 @import 'scss/ui', 'scss/iconmoon';
 
-/*复写*/
-.btn
-{
-    border-radius: 0;
-    min-width: 0;
-    padding: 0 8px;
-    line-height: 32px;
-    background: #fff;
-    @include mx_ptborder($color: $border-color, $radius: 4px);
-    @include mx_box-shadow(none);
-
-    &.focus
-    {
-        background: #fafafa;
-    }
-}
-
-
+/*general*/
 input
 {
     height: 32px;
-    border: 1px solid $border-color;
     padding: 0 0.5em;
-    //background: transparent;
+    background: transparent;
     border-radius: 0;
     border: none;
+}
+
+
+.btn_blue
+{
+    display: inline-block;
+    line-height: 32px;
+    padding: 0 12px;
+    background: #4892e6;
+    color: #fff;
+    border-radius: 2px;
+    margin-left: 4px;
+
+    &.focus
+    {
+        color: #fff;
+        background: #dc313e;
+    }
 }
 
 
@@ -42,7 +42,20 @@ input
 {
     .btn_login
     {
+        display: inline-block;
         margin: 6px 8px 0 0;
+        padding: 0 12px;
+        line-height: 32px;
+        @include mx_ptborder($color: $border-color, $radius: 4px);
+        @include mx_box-shadow(none);
+        border-radius: 2px;
+        overflow: hidden;
+
+        &.focus
+        {
+            color: #fff;
+            background: #dc313e;
+        }
     }
 
     .roottitle
@@ -84,20 +97,16 @@ input
         background: #fff;
         @include mx_ptborder($color: $border-color, $trbl: bottom);
 
-        .txt_search
-        {
-            width: 82%;
-        }
-
-        .btn_search
+        .txtbox
         {
             display: inline-block;
-            line-height: 32px;
-            padding: 0 8px;
-            background: #4892e6;
-            color: #fff;
-            border-radius: 2px;
-            margin-left: 4px;
+            width: 80%;
+            @include mx_ptborder($color: $border-color);
+
+            input
+            {
+                width: 100%;
+            }
         }
     }
 }

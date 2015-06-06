@@ -33,8 +33,11 @@
 
 /*定位*/
 .absolute, .head, .head
-.btnleft, #header > div, .panel, #navbar:after, .btn:before, #panel1
-.search:before {
+.btnleft, #header > div, .panel, #navbar:after, #header
+.btn_login:before, #panel1
+.search:before, #panel1
+.search
+.txtbox:before {
   position: absolute;
   left: 0;
   top: 0; }
@@ -305,7 +308,7 @@ b:nth-of-type(8) {
     content: '';
     width: 100%;
     height: 1px;
-    background-color: #ddd;
+    background-color: #ccc;
     -webkit-transform: scale3d(1, 0.5, 1);
     transform: scale3d(1, 0.5, 1);
     -webkit-transform-origin: 50% 100%;
@@ -445,7 +448,7 @@ iframe {
     content: '';
     width: 100%;
     height: 1px;
-    background-color: #ddd;
+    background-color: #ccc;
     -webkit-transform: scale3d(1, 0.5, 1);
     transform: scale3d(1, 0.5, 1);
     -webkit-transform-origin: 50% 0;
@@ -509,44 +512,58 @@ a {
 .icon-menu:before {
   content: '\e601'; }
 
-/*复写*/
-.btn {
+/*general*/
+input {
+  height: 32px;
+  padding: 0 0.5em;
+  background: transparent;
   border-radius: 0;
-  min-width: 0;
-  padding: 0 8px;
+  border: none; }
+
+.btn_blue {
+  display: inline-block;
   line-height: 32px;
-  background: #fff;
+  padding: 0 12px;
+  background: #4892e6;
+  color: #fff;
+  border-radius: 2px;
+  margin-left: 4px; }
+  .btn_blue.focus {
+    color: #fff;
+    background: #dc313e; }
+
+/*头部*/
+#header
+.btn_login {
+  display: inline-block;
+  margin: 6px 8px 0 0;
+  padding: 0 12px;
+  line-height: 32px;
   position: relative;
   -webkit-box-shadow: none;
-  box-shadow: none; }
-  .btn:before {
+  box-shadow: none;
+  border-radius: 2px;
+  overflow: hidden; }
+  #header
+.btn_login:before {
     content: '';
     width: 200%;
     height: 200%;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     -webkit-transform: scale3d(0.5, 0.5, 1);
     transform: scale3d(0.5, 0.5, 1);
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
     z-index: 0;
     border-radius: 4px; }
-  .btn > * {
+  #header
+.btn_login > * {
     position: relative;
     z-index: 1; }
-  .btn.focus {
-    background: #fafafa; }
-
-input {
-  height: 32px;
-  border: 1px solid #ddd;
-  padding: 0 0.5em;
-  border-radius: 0;
-  border: none; }
-
-/*头部*/
-#header
-.btn_login {
-  margin: 6px 8px 0 0; }
+  #header
+.btn_login.focus {
+    color: #fff;
+    background: #dc313e; }
 
 #header
 .roottitle {
@@ -579,7 +596,7 @@ i {
       content: '';
       width: 200%;
       height: 200%;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #ccc;
       -webkit-transform: scale3d(0.5, 0.5, 1);
       transform: scale3d(0.5, 0.5, 1);
       -webkit-transform-origin: 0 0;
@@ -591,15 +608,29 @@ i {
       z-index: 1; }
     #panel1
 .search
-.txt_search {
-      width: 82%; }
-    #panel1
-.search
-.btn_search {
+.txtbox {
       display: inline-block;
-      line-height: 32px;
-      padding: 0 8px;
-      background: #4892e6;
-      color: #fff;
-      border-radius: 2px;
-      margin-left: 4px; }
+      width: 80%;
+      position: relative; }
+      #panel1
+.search
+.txtbox:before {
+        content: '';
+        width: 200%;
+        height: 200%;
+        border: 1px solid #ccc;
+        -webkit-transform: scale3d(0.5, 0.5, 1);
+        transform: scale3d(0.5, 0.5, 1);
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0;
+        z-index: 0; }
+      #panel1
+.search
+.txtbox > * {
+        position: relative;
+        z-index: 1; }
+      #panel1
+.search
+.txtbox
+input {
+        width: 100%; }
