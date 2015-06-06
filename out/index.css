@@ -539,7 +539,9 @@ a {
 input {
   height: 32px;
   border: 1px solid #ddd;
-  padding: 0 0.5em; }
+  padding: 0 0.5em;
+  background: transparent;
+  border-radius: 0; }
 
 /*头部*/
 #header
@@ -600,4 +602,4 @@ i {
       background: #4892e6;
       color: #fff;
       border-radius: 2px;
-      margin-left: 5px; }
+      margin-left: 4px; }
