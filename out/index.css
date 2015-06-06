@@ -540,8 +540,8 @@ input {
   height: 32px;
   border: 1px solid #ddd;
   padding: 0 0.5em;
-  background: transparent;
-  border-radius: 0; }
+  border-radius: 0;
+  border: none; }
 
 /*头部*/
 #header
