@@ -129,7 +129,7 @@ body {
   /*加背景色可减缓页面闪烁*/
   /*可继承*/
   color: #333;
-  line-height: 1.5em;
+  line-height: 22px;
   font-size: 14px;
   -webkit-text-size-adjust: none;
   -webkit-user-select: none;
@@ -836,3 +836,22 @@ span {
 .txtbox {
     display: inline-block;
     width: 79%; }
+  #panel1
+.game_down
+.center {
+    line-height: 22px; }
+  #panel1
+.game_down
+a {
+    display: inline-block;
+    width: 24%; }
+    #panel1
+.game_down
+a.focus
+img {
+      opacity: 0.7; }
+    #panel1
+.game_down
+a
+img {
+      width: 90%; }

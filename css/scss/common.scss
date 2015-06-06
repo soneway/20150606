@@ -18,7 +18,7 @@ body
     background-color: $panel_bgcolor; /*加背景色可减缓页面闪烁*/
     /*可继承*/
     color: $color;
-    line-height: 1.5em;
+    line-height: $line-height;
     font-size: $font-size;
     -webkit-text-size-adjust: none;
     @include mx_user-select(none); /*禁止选中文本*/

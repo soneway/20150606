@@ -363,4 +363,31 @@ input
         }
     }
 
+    .game_down
+    {
+        .center
+        {
+            line-height: $line-height;
+        }
+
+        a
+        {
+            display: inline-block;
+            width: 24%;
+
+            &.focus
+            {
+                img
+                {
+                    opacity: 0.7;
+                }
+            }
+
+            img
+            {
+                width: 90%;
+            }
+        }
+    }
+
 }
