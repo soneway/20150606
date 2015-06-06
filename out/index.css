@@ -680,23 +680,25 @@ i {
     #panel1
 .content > * {
       margin: 0 auto 10px auto; }
+      #panel1
+.content > *:last-child {
+        margin-bottom: 0; }
   #panel1
-.nav {
+.link_list {
     padding: 12px 0;
     font-size: 12px; }
     #panel1
-.nav
-.nav_item {
+.link_list
+a {
       display: inline-block;
       width: 23%; }
       #panel1
-.nav
-.nav_item.focus
-img {
+.link_list
+a.focus {
         opacity: 0.7; }
       #panel1
-.nav
-.nav_item
+.link_list
+a
 img {
         width: 80%; }
   #panel1
@@ -744,7 +746,7 @@ a.focus {
       transform: scale3d(1, 0.5, 1);
       -webkit-transform-origin: 0 0;
       transform-origin: 0 0;
-      z-index: 0; }
+      z-index: 1; }
     #panel1
 .applist
 a {
@@ -767,16 +769,8 @@ img {
 .view_more.focus, #panel1
 .applist
 .view_more.selected {
-      background: none; }
-      #panel1
-.applist
-.view_more.focus
-img
-, #panel1
-.applist
-.view_more.selected
-img {
-        opacity: 0.7; }
+      background: none;
+      opacity: 0.7; }
     #panel1
 .applist
 .view_more
@@ -839,19 +833,95 @@ span {
   #panel1
 .game_down
 .center {
-    line-height: 22px; }
+    font-size: 0;
+    line-height: 22px;
+    padding: 8px 0 0 0; }
   #panel1
 .game_down
 a {
+    font-size: 14px;
     display: inline-block;
-    width: 24%; }
+    width: 25%; }
     #panel1
 .game_down
-a.focus
-img {
+a.focus {
       opacity: 0.7; }
     #panel1
 .game_down
 a
 img {
-      width: 90%; }
+      width: 85%; }
+  #panel1
+.partner
+.center {
+    font-size: 0; }
+  #panel1
+.partner
+a {
+    font-size: 14px;
+    display: inline-block;
+    width: 33.3%; }
+    #panel1
+.partner
+a.focus {
+      opacity: 0.7; }
+    #panel1
+.partner
+a
+img {
+      width: 95%; }
+  #panel1
+.footer
+.nav {
+    line-height: 40px;
+    font-size: 0; }
+    #panel1
+.footer
+.nav
+a {
+      display: inline-block;
+      vertical-align: top;
+      width: 24%;
+      font-size: 16px; }
+      #panel1
+.footer
+.nav
+a:not(:first-child):after {
+        content: '';
+        width: 1px;
+        height: 18px;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin-top: -9px;
+        background: #ccc;
+        -webkit-transform: scale3d(0.5, 1, 1);
+        transform: scale3d(0.5, 1, 1); }
+  #panel1
+.footer
+.copyright {
+    padding: 5px 0;
+    color: #888; }
+    #panel1
+.footer
+.copyright
+nav
+a {
+      display: inline-block;
+      width: 80px;
+      position: relative; }
+      #panel1
+.footer
+.copyright
+nav
+a:not(:last-child):after {
+        content: '';
+        width: 1px;
+        height: 14px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -7px;
+        background: #333;
+        -webkit-transform: scale3d(0.5, 1, 1);
+        transform: scale3d(0.5, 1, 1); }

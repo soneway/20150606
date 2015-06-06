@@ -21,7 +21,7 @@ var minifyCss = require('gulp-minify-css');
 gulp.task('css', function () {
     var task = gulp.src('css/index.scss')
         //编译
-        .pipe(sass())
+        .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('out'));
 
     //压缩

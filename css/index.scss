@@ -174,25 +174,27 @@ input
         & > *
         {
             margin: 0 auto $p auto;
+
+            &:last-child
+            {
+                margin-bottom: 0;
+            }
         }
     }
 
-    .nav
+    .link_list
     {
         padding: 12px 0;
         font-size: 12px;
 
-        .nav_item
+        a
         {
             display: inline-block;
             width: 23%;
 
             &.focus
             {
-                img
-                {
-                    opacity: 0.7;
-                }
+                opacity: 0.7;
             }
 
             img
@@ -253,7 +255,7 @@ input
             background: $border-color;
             @include mx_transform(scale3d(1, 0.5, 1));
             @include mx_transform-origin(0 0);
-            z-index: 0;
+            z-index: 1;
         }
 
         $p: 8px;
@@ -282,11 +284,7 @@ input
             &.focus, &.selected
             {
                 background: none;
-
-                img
-                {
-                    opacity: 0.7;
-                }
+                opacity: 0.7;
             }
 
             img
@@ -365,27 +363,116 @@ input
 
     .game_down
     {
+
         .center
         {
+            font-size: 0;
             line-height: $line-height;
+            padding: 8px 0 0 0;
         }
 
         a
         {
+            font-size: $font-size;
             display: inline-block;
-            width: 24%;
+            width: 25%;
 
             &.focus
             {
-                img
-                {
-                    opacity: 0.7;
-                }
+                opacity: 0.7;
             }
 
             img
             {
-                width: 90%;
+                width: 85%;
+            }
+        }
+    }
+
+    .partner
+    {
+
+        .center
+        {
+            font-size: 0;
+        }
+
+        a
+        {
+            font-size: $font-size;
+            display: inline-block;
+            width: 33.3%;
+
+            &.focus
+            {
+                opacity: 0.7;
+            }
+
+            img
+            {
+                width: 95%;
+            }
+        }
+    }
+
+    .footer
+    {
+        .nav
+        {
+            line-height: 40px;
+            font-size: 0;
+
+            a
+            {
+                display: inline-block;
+                vertical-align: top;
+                width: 24%;
+                font-size: 16px;
+
+                &:not(:first-child):after
+                {
+                    $h: 18px;
+
+                    content: '';
+                    width: 1px;
+                    height: $h;
+                    @include mx_plt($top: 50%);
+                    margin-top: -$h / 2;
+                    background: $border-color;
+                    @include mx_transform(scale3d(0.5, 1, 1));
+                }
+            }
+        }
+
+        .copyright
+        {
+            padding: 5px 0;
+            color: #888;
+
+            nav
+            {
+                a
+                {
+                    display: inline-block;
+                    width: 80px;
+                    position: relative;
+
+                    &:not(:last-child)
+                    {
+                        &:after
+                        {
+                            $h: 14px;
+
+                            content: '';
+                            width: 1px;
+                            height: $h;
+                            @include mx_prt($top: 50%);
+                            margin-top: -$h / 2;
+                            background: $color;
+                            @include mx_transform(scale3d(0.5, 1, 1));
+                        }
+                    }
+                }
             }
         }
     }
