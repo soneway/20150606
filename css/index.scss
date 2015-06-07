@@ -7,6 +7,7 @@ $border-color: $head_border-color;
 $blue: #4892e6;
 $red: #dc313e;
 $gray: #f2f2f2;
+$height: 32px;
 
 /*外部引入*/
 @import 'scss/ui', 'scss/iconmoon';
@@ -40,10 +41,16 @@ $gray: #f2f2f2;
 }
 
 
+.btnright
+{
+    color: $blue;
+}
+
+
 /*general*/
 input
 {
-    height: 32px;
+    height: $height;
     padding: 0 0.5em;
     background: transparent;
     border-radius: 0;
@@ -54,7 +61,7 @@ input
 .btn_blue
 {
     display: inline-block;
-    line-height: 32px;
+    line-height: $height;
     padding: 0 12px;
     background: $blue;
     color: #fff;
@@ -165,7 +172,7 @@ input
         display: inline-block;
         margin: 6px 8px 0 0;
         padding: 0 12px;
-        line-height: 32px;
+        line-height: $height;
         @include mx_ptborder($color: $border-color, $radius: 4px);
         @include mx_box-shadow(none);
         border-radius: 2px;
@@ -208,7 +215,7 @@ input
     .notice
     {
         background: #fffce6;
-        line-height: 32px;
+        line-height: $height;
 
         i
         {
@@ -649,7 +656,7 @@ input
             {
                 @extend %ph_part;
                 height: 100%;
-                line-height: 32px;
+                line-height: $height;
                 padding: 0 8px;
                 border: 1px solid transparent;
                 background: rgba(240, 240, 240, 0.1);
@@ -670,11 +677,12 @@ input
 #panelservice
 {
     $h: 50px;
+    $p: ($h - $height) / 2;
     padding-top: 0;
     overflow: hidden;
     background: #f6f6f6;
 
-    .content
+    .msg_content
     {
         height: 100%;
         padding-top: $head_height;
@@ -686,9 +694,29 @@ input
         @extend %ph_palb;
         width: 100%;
         height: $h;
+        padding: $p 70px 0 40px;
         background: $head_bgcolor;
-
         @extend .ptborder_top;
+
+        .btn_add
+        {
+            $w: 20px;
+            @extend %ph_content-box;
+            @include mx_plt($left: $p, $top: 50%);
+            width: $w;
+            height: $w;
+            margin-top: -$w / 2;
+            font-size: $w * 1.2;
+            border-radius: $w;
+            text-align: center;
+            border: 1px solid $color;
+        }
+
+        .btn_send
+        {
+            @include mx_prt($top: 50%, $right: $p);
+            margin-top: -$height / 2;
+        }
     }
 }
 
@@ -698,9 +726,15 @@ input
 {
     $h: 36px;
     $sd: 0 1px 1px rgba(0, 0, 0, 0.2);
-    $bg: #fff;
 
     padding: 0 5px;
+
+    .msg_item
+    {
+        padding: 0 25px 0 55px;
+        position: relative;
+        margin-bottom: 10px;
+    }
 
     .timestamp
     {
@@ -709,27 +743,28 @@ input
         line-height: $h;
     }
 
-    .avator, .msg_content
+    .avator, .msg
     {
         vertical-align: top;
         @include mx_box-shadow($sd);
-        border-radius: 2px;
+        border-radius: 4px;
     }
 
     .avator
     {
         width: $h;
         height: $h;
+        @include mx_plt($left: 5px, $top: $h);
     }
 
-    .msg_content
+    .msg
     {
-        display: inline-block;
-        width: 60%;
+        $p: 8px;
+
+        width: 100%;
         min-height: $h;
-        margin-left: 10px;
         position: relative;
-        background: $bg;
+        padding: $p;
 
         &:before
         {
@@ -739,9 +774,69 @@ input
             width: 0.5em;
             overflow: hidden;
             font-size: 10px;
+            text-shadow: $sd;
+        }
+
+        /*自动回复样式*/
+        &.automsg
+        {
+            h3
+            {
+                line-height: 1em;
+            }
+
+            a
+            {
+                display: block;
+                text-align: center;
+                background: $blue;
+                color: #fff;
+                line-height: $h;
+                margin-top: $p;
+                border-radius: 2px;
+
+                &.focus
+                {
+                    background: $red;
+                }
+            }
+        }
+    }
+
+    .service .msg
+    {
+        $bg: #fff;
+        background: $bg;
+
+        &:before
+        {
             left: -0.5em;
             color: $bg;
-            text-shadow: $sd;
+        }
+    }
+
+    .client .msg
+    {
+        $bg: $blue;
+        background: $bg;
+        color: #fff;
+
+        &:before
+        {
+            text-indent: -0.5em;
+            right: -0.5em;
+            color: $bg;
+        }
+    }
+
+    .image .msg
+    {
+        width: auto;
+
+        img
+        {
+            max-width: 50%;
+            max-height: 100px;
         }
     }
 }
