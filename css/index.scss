@@ -20,7 +20,7 @@ $gray: #f2f2f2;
 
 #mainbox
 {
-    overflow: initial;
+    overflow: visible;
 
     .onsidebox &
     {
@@ -31,8 +31,8 @@ $gray: #f2f2f2;
 
 .panel
 {
-    height: initial;
-    overflow: initial;
+    height: auto;
+    overflow: visible;
 
     &[data-role=root]
     {
@@ -97,7 +97,7 @@ input
 /*头部*/
 #header
 {
-    .btn_login
+    .btn_login, .btn_cs
     {
         display: inline-block;
         margin: 6px 8px 0 0;
@@ -312,10 +312,20 @@ input
         {
             line-height: 30px;
             padding: 7px;
+            position: relative;
 
             &:not(:first-child)
             {
-                @include mx_ptborder($color: $border-color, $trbl: top);
+                &:before
+                {
+                    content: '';
+                    @extend %ph_palt;
+                    width: 100%;
+                    height: 1px;
+                    background: $border-color;
+                    @include mx_transform(scale3d(1, 0.5, 1));
+                    z-index: 0;
+                }
             }
         }
 
@@ -440,6 +450,7 @@ input
                     margin-top: -$h / 2;
                     background: $border-color;
                     @include mx_transform(scale3d(0.5, 1, 1));
+                    z-index: 0;
                 }
             }
         }
@@ -470,6 +481,7 @@ input
                             margin-top: -$h / 2;
                             background: $color;
                             @include mx_transform(scale3d(0.5, 1, 1));
+                            z-index: 0;
                         }
                     }
                 }
@@ -477,4 +489,144 @@ input
         }
     }
 
+}
+
+
+/*sidebox*/
+#sidebox
+{
+    $c: #fff;
+
+    background: #377ccb;
+
+    &, a
+    {
+        color: $c;
+    }
+
+    a.focus
+    {
+        background-color: $blue !important;
+    }
+
+    .title
+    {
+        line-height: $head_height;
+    }
+
+    .csbox
+    {
+        padding-top: 10px;
+        font-size: 0;
+
+        a
+        {
+            display: inline-block;
+            vertical-align: top;
+            width: 42%;
+            margin: 6px;
+            height: 95px;
+            padding-top: 60px;
+            font-size: $font-size;
+            background: rgba(240, 240, 255, 0.1) center 40%/35px auto no-repeat;
+            position: relative;
+
+            &.msg
+            {
+                &:before
+                {
+                    $w: 8px;
+                    content: '';
+                    @include mx_plt($left: 50%, $top: 20%);
+                    @extend %ph_content-box;
+                    margin-left: 15px;
+                    width: $w;
+                    height: $w;
+                    border-radius: $w;
+                    background: $red;
+                    border: 2px solid $c;
+                }
+            }
+        }
+
+        .i1
+        {
+            background-image: url(../images/cs1.png);
+        }
+
+        .i2
+        {
+            background-image: url(../images/cs2.png);
+        }
+
+        .i3
+        {
+            background-image: url(../images/cs3.png);
+        }
+
+        .i4
+        {
+            background-image: url(../images/cs4.png);
+        }
+    }
+
+    .qq_verify
+    {
+        padding: 20px 12px 10px 12px;
+
+        h3
+        {
+            text-align: left;
+            padding-bottom: 5px;
+
+            &:before
+            {
+                content: '';
+                display: inline-block;
+                width: 15px;
+                height: 17px;
+                background: url(../images/qq.png) center center/cover;
+                vertical-align: sub;
+                margin-right: 3px;
+            }
+        }
+
+        .txtbox
+        {
+
+            &:before
+            {
+                border-color: $c;
+            }
+
+            a
+            {
+                @extend %ph_part;
+                height: 100%;
+                line-height: 32px;
+                padding: 0 8px;
+                border: 1px solid transparent;
+                background: rgba(240, 240, 240, 0.1);
+
+                &:before
+                {
+                    content: '';
+                    @extend %ph_palt;
+                    width: 1px;
+                    height: 100%;
+                    background: $c;
+                    @include mx_transform(scale3d(0.5, 1, 1));
+                    z-index: 0;
+                }
+            }
+        }
+    }
+
+}
+
+
+/*交易猫在线客服*/
+#panelservice
+{
+    min-height: 100%;
 }
