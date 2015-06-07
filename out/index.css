@@ -34,17 +34,20 @@
 /*定位*/
 .absolute, .head, .head
 .btnleft, #sidebox, #header > div, .panel, .border:before, .bgborder:before, #panel1
-.list:before, .txtbox:before, #header .btn_login:before, #header
-.btn_cs:before, #panel1
-.search:before, #panel1
-.applist:after, #panel1
-.applist
-.view_more
-i, #panel1
-.list > *:not(:first-child):before, #sidebox
+.list:before, .txtbox:before, .ptborder_left:before, #panel1
+.footer
+.nav
+a:not(:first-child):before, #sidebox
 .qq_verify
 .txtbox
-a:before {
+a:before, .ptborder_top:before, #panel1
+.list > :not(:first-child):before, #panelservice
+.inputbox:before, #header .btn_login:before, #header
+.btn_cs:before, #panel1
+.search:before, #panel1
+.applist
+.view_more
+i {
   position: absolute;
   left: 0;
   top: 0; }
@@ -55,7 +58,11 @@ a:before {
   top: 0; }
 
 .head
-.btnright, #sidebox
+.btnright, .ptborder_right:after, #panel1
+.footer
+.copyright
+nav
+a:not(:last-child):after, #sidebox
 .qq_verify
 .txtbox
 a {
@@ -63,7 +70,9 @@ a {
   right: 0;
   top: 0; }
 
-.head:after {
+.head:after, .ptborder_bottom:after, #panel1
+.applist:after, #panelservice
+.inputbox {
   position: absolute;
   left: 0;
   bottom: 0; }
@@ -501,19 +510,8 @@ iframe {
   content: '\e601'; }
 
 /*复写*/
-#header {
-  position: fixed; }
-
-#mainbox {
-  overflow: visible; }
-  .onsidebox #mainbox {
-    overflow: hidden; }
-
-.panel {
-  height: auto;
-  overflow: visible; }
-  .panel[data-role=root] {
-    padding-bottom: 0; }
+.panel[data-role=root] {
+  padding-bottom: 0; }
 
 /*general*/
 input {
@@ -561,6 +559,59 @@ input {
 .txtbox
 input {
   width: 100%; }
+
+/*1px左边框*/
+.ptborder_left:before, #panel1
+.footer
+.nav
+a:not(:first-child):before, #sidebox
+.qq_verify
+.txtbox
+a:before {
+  content: '';
+  width: 1px;
+  height: 100%;
+  background: #ccc;
+  -webkit-transform: scale3d(0.5, 1, 1);
+  transform: scale3d(0.5, 1, 1);
+  z-index: 0; }
+
+/*1px右边框*/
+.ptborder_right:after, #panel1
+.footer
+.copyright
+nav
+a:not(:last-child):after {
+  content: '';
+  width: 1px;
+  height: 100%;
+  background: #ccc;
+  -webkit-transform: scale3d(0.5, 1, 1);
+  transform: scale3d(0.5, 1, 1);
+  z-index: 0; }
+
+/*1px上边框*/
+.ptborder_top:before, #panel1
+.list > :not(:first-child):before, #panelservice
+.inputbox:before {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: #ccc;
+  -webkit-transform: scale3d(1, 0.5, 1);
+  transform: scale3d(1, 0.5, 1);
+  z-index: 0; }
+
+/*1px下边框*/
+.ptborder_bottom:after, #panel1
+.applist:after {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: #ccc;
+  -webkit-transform: scale3d(1, 0.5, 1);
+  transform: scale3d(1, 0.5, 1);
+  z-index: 0; }
 
 /*头部*/
 #header .btn_login, #header
@@ -710,15 +761,7 @@ a.focus {
     padding: 1px; }
     #panel1
 .applist:after {
-      content: '';
-      width: 100%;
-      height: 1px;
       top: 50%;
-      background: #ccc;
-      -webkit-transform: scale3d(1, 0.5, 1);
-      transform: scale3d(1, 0.5, 1);
-      -webkit-transform-origin: 0 0;
-      transform-origin: 0 0;
       z-index: 1; }
     #panel1
 .applist
@@ -763,15 +806,6 @@ i {
       line-height: 30px;
       padding: 7px;
       position: relative; }
-      #panel1
-.list > *:not(:first-child):before {
-        content: '';
-        width: 100%;
-        height: 1px;
-        background: #ccc;
-        -webkit-transform: scale3d(1, 0.5, 1);
-        transform: scale3d(1, 0.5, 1);
-        z-index: 0; }
     #panel1
 .list > a {
       display: block; }
@@ -851,18 +885,10 @@ a {
       #panel1
 .footer
 .nav
-a:not(:first-child):after {
-        content: '';
-        width: 1px;
+a:not(:first-child):before {
         height: 18px;
-        position: absolute;
-        left: 0;
         top: 50%;
-        margin-top: -9px;
-        background: #ccc;
-        -webkit-transform: scale3d(0.5, 1, 1);
-        transform: scale3d(0.5, 1, 1);
-        z-index: 0; }
+        margin-top: -9px; }
   #panel1
 .footer
 .copyright {
@@ -881,17 +907,10 @@ a {
 .copyright
 nav
 a:not(:last-child):after {
-        content: '';
-        width: 1px;
         height: 14px;
-        position: absolute;
-        right: 0;
         top: 50%;
         margin-top: -7px;
-        background: #333;
-        -webkit-transform: scale3d(0.5, 1, 1);
-        transform: scale3d(0.5, 1, 1);
-        z-index: 0; }
+        background: #333; }
 
 /*sidebox*/
 #sidebox {
@@ -985,14 +1004,19 @@ a {
 .qq_verify
 .txtbox
 a:before {
-        content: '';
-        width: 1px;
-        height: 100%;
-        background: #fff;
-        -webkit-transform: scale3d(0.5, 1, 1);
-        transform: scale3d(0.5, 1, 1);
-        z-index: 0; }
+        background: #fff; }
 
 /*交易猫在线客服*/
 #panelservice {
-  min-height: 100%; }
+  padding-top: 0;
+  overflow: hidden; }
+  #panelservice
+.content {
+    height: 100%;
+    padding-top: 44px;
+    padding-bottom: 50px; }
+  #panelservice
+.inputbox {
+    width: 100%;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9); }

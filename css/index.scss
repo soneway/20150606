@@ -12,27 +12,26 @@ $gray: #f2f2f2;
 @import 'scss/ui', 'scss/iconmoon';
 
 /*复写*/
-#header
-{
-    position: fixed;
-}
-
-
-#mainbox
-{
-    overflow: visible;
-
-    .onsidebox &
-    {
-        overflow: hidden;
-    }
-}
-
+//#header
+//{
+//    position: fixed;
+//}
+//
+//
+//#mainbox
+//{
+//    overflow: visible;
+//
+//    .onsidebox &
+//    {
+//        overflow: hidden;
+//    }
+//}
 
 .panel
 {
-    height: auto;
-    overflow: visible;
+    //height: auto;
+    //overflow: visible;
 
     &[data-role=root]
     {
@@ -90,6 +89,70 @@ input
     input
     {
         width: 100%;
+    }
+}
+
+
+/*1px左边框*/
+.ptborder_left
+{
+    &:before
+    {
+        content: '';
+        @extend %ph_palt;
+        width: 1px;
+        height: 100%;
+        background: $border-color;
+        @include mx_transform(scale3d(0.5, 1, 1));
+        z-index: 0;
+    }
+}
+
+
+/*1px右边框*/
+.ptborder_right
+{
+    &:after
+    {
+        content: '';
+        @extend %ph_part;
+        width: 1px;
+        height: 100%;
+        background: $border-color;
+        @include mx_transform(scale3d(0.5, 1, 1));
+        z-index: 0;
+    }
+}
+
+
+/*1px上边框*/
+.ptborder_top
+{
+    &:before
+    {
+        content: '';
+        @extend %ph_palt;
+        width: 100%;
+        height: 1px;
+        background: $border-color;
+        @include mx_transform(scale3d(1, 0.5, 1));
+        z-index: 0;
+    }
+}
+
+
+/*1px下边框*/
+.ptborder_bottom
+{
+    &:after
+    {
+        content: '';
+        @extend %ph_palb;
+        width: 100%;
+        height: 1px;
+        background: $border-color;
+        @include mx_transform(scale3d(1, 0.5, 1));
+        z-index: 0;
     }
 }
 
@@ -244,17 +307,11 @@ input
     {
         font-size: 0;
         padding: 1px;
+        @extend .ptborder_bottom;
 
         &:after
         {
-            content: '';
-            @extend %ph_palt;
-            width: 100%;
-            height: 1px;
             top: 50%;
-            background: $border-color;
-            @include mx_transform(scale3d(1, 0.5, 1));
-            @include mx_transform-origin(0 0);
             z-index: 1;
         }
 
@@ -316,16 +373,7 @@ input
 
             &:not(:first-child)
             {
-                &:before
-                {
-                    content: '';
-                    @extend %ph_palt;
-                    width: 100%;
-                    height: 1px;
-                    background: $border-color;
-                    @include mx_transform(scale3d(1, 0.5, 1));
-                    z-index: 0;
-                }
+                @extend .ptborder_top;
             }
         }
 
@@ -439,18 +487,18 @@ input
                 width: 24%;
                 font-size: 16px;
 
-                &:not(:first-child):after
+                &:not(:first-child)
                 {
-                    $h: 18px;
+                    @extend .ptborder_left;
 
-                    content: '';
-                    width: 1px;
-                    height: $h;
-                    @include mx_plt($top: 50%);
-                    margin-top: -$h / 2;
-                    background: $border-color;
-                    @include mx_transform(scale3d(0.5, 1, 1));
-                    z-index: 0;
+                    &:before
+                    {
+                        $h: 18px;
+
+                        height: $h;
+                        top: 50%;
+                        margin-top: -$h / 2;
+                    }
                 }
             }
         }
@@ -470,18 +518,16 @@ input
 
                     &:not(:last-child)
                     {
+                        @extend .ptborder_right;
+
                         &:after
                         {
                             $h: 14px;
 
-                            content: '';
-                            width: 1px;
                             height: $h;
-                            @include mx_prt($top: 50%);
+                            top: 50%;
                             margin-top: -$h / 2;
                             background: $color;
-                            @include mx_transform(scale3d(0.5, 1, 1));
-                            z-index: 0;
                         }
                     }
                 }
@@ -608,15 +654,10 @@ input
                 border: 1px solid transparent;
                 background: rgba(240, 240, 240, 0.1);
 
+                @extend .ptborder_left;
                 &:before
                 {
-                    content: '';
-                    @extend %ph_palt;
-                    width: 1px;
-                    height: 100%;
                     background: $c;
-                    @include mx_transform(scale3d(0.5, 1, 1));
-                    z-index: 0;
                 }
             }
         }
@@ -628,5 +669,24 @@ input
 /*交易猫在线客服*/
 #panelservice
 {
-    min-height: 100%;
+    $h: 50px;
+    padding-top: 0;
+    overflow: hidden;
+
+    .content
+    {
+        height: 100%;
+        padding-top: $head_height;
+        padding-bottom: $h;
+    }
+
+    .inputbox
+    {
+        @extend %ph_palb;
+        width: 100%;
+        height: $h;
+        background: $head_bgcolor;
+
+        @extend .ptborder_top;
+    }
 }

@@ -1334,7 +1334,7 @@
 
     //文档加载完成
     $(function () {
-        $.toggleSidebox(true);
+        //$.toggleSidebox(true);
     });
 
 
