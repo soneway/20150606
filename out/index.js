@@ -1409,6 +1409,7 @@
                     var txt = $txtMsg.val();
                     if (txt) {
                         refreshMsg(txt);
+                        //$txtMsg.val('');
 
                         //客服回复
                         setTimeout(function () {

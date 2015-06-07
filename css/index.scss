@@ -710,6 +710,7 @@ input
             border-radius: $w;
             text-align: center;
             border: 1px solid $color;
+            font-family: arial;
         }
 
         .btn_send
@@ -725,7 +726,7 @@ input
 #msgbox
 {
     $h: 36px;
-    $sd: 0 1px 1px rgba(0, 0, 0, 0.2);
+    $sd: 0 1px 2px rgba(0, 0, 0, 0.2);
 
     padding: 0 5px;
 
@@ -782,7 +783,7 @@ input
         {
             h3
             {
-                line-height: 1em;
+                line-height: 1.1em;
             }
 
             a

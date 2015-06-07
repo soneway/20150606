@@ -1039,7 +1039,8 @@ a:before {
       font-size: 24px;
       border-radius: 20px;
       text-align: center;
-      border: 1px solid #333; }
+      border: 1px solid #333;
+      font-family: arial; }
     #panelservice
 .inputbox
 .btn_send {
@@ -1064,8 +1065,8 @@ a:before {
   #msgbox .avator, #msgbox
 .msg {
     vertical-align: top;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     border-radius: 4px; }
   #msgbox
 .avator {
@@ -1089,11 +1090,11 @@ a:before {
       width: 0.5em;
       overflow: hidden;
       font-size: 10px;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); }
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
     #msgbox
 .msg.automsg
 h3 {
-      line-height: 1em; }
+      line-height: 1.1em; }
     #msgbox
 .msg.automsg
 a {
