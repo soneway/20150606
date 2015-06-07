@@ -694,23 +694,23 @@ input
         @extend %ph_palb;
         width: 100%;
         height: $h;
-        padding: $p 70px 0 40px;
+        padding: $p 70px 0 38px;
         background: $head_bgcolor;
         @extend .ptborder_top;
 
         .btn_add
         {
             $w: 20px;
-            @extend %ph_content-box;
             @include mx_plt($left: $p, $top: 50%);
             width: $w;
             height: $w;
             margin-top: -$w / 2;
-            font-size: $w * 1.2;
+            line-height: 18px;
+            font-size: $w;
             border-radius: $w;
             text-align: center;
             border: 1px solid $color;
-            font-family: arial;
+            font-family: sans-serif;
         }
 
         .btn_send
@@ -776,6 +776,7 @@ input
             overflow: hidden;
             font-size: 10px;
             text-shadow: $sd;
+            font-family: sans-serif;
         }
 
         /*自动回复样式*/
