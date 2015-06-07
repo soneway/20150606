@@ -1009,7 +1009,8 @@ a:before {
 /*交易猫在线客服*/
 #panelservice {
   padding-top: 0;
-  overflow: hidden; }
+  overflow: hidden;
+  background: #f6f6f6; }
   #panelservice
 .content {
     height: 100%;
@@ -1020,3 +1021,41 @@ a:before {
     width: 100%;
     height: 50px;
     background: rgba(255, 255, 255, 0.9); }
+
+/*消息盒子*/
+#msgbox {
+  padding: 0 5px; }
+  #msgbox
+.timestamp {
+    text-align: center;
+    color: #888;
+    line-height: 36px; }
+  #msgbox .avator, #msgbox
+.msg_content {
+    vertical-align: top;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 2px; }
+  #msgbox
+.avator {
+    width: 36px;
+    height: 36px; }
+  #msgbox
+.msg_content {
+    display: inline-block;
+    width: 60%;
+    min-height: 36px;
+    margin-left: 10px;
+    position: relative;
+    background: #fff; }
+    #msgbox
+.msg_content:before {
+      content: '◆';
+      position: absolute;
+      top: 6px;
+      width: 0.5em;
+      overflow: hidden;
+      font-size: 10px;
+      left: -0.5em;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); }

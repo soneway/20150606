@@ -672,6 +672,7 @@ input
     $h: 50px;
     padding-top: 0;
     overflow: hidden;
+    background: #f6f6f6;
 
     .content
     {
@@ -688,5 +689,59 @@ input
         background: $head_bgcolor;
 
         @extend .ptborder_top;
+    }
+}
+
+
+/*消息盒子*/
+#msgbox
+{
+    $h: 36px;
+    $sd: 0 1px 1px rgba(0, 0, 0, 0.2);
+    $bg: #fff;
+
+    padding: 0 5px;
+
+    .timestamp
+    {
+        text-align: center;
+        color: #888;
+        line-height: $h;
+    }
+
+    .avator, .msg_content
+    {
+        vertical-align: top;
+        @include mx_box-shadow($sd);
+        border-radius: 2px;
+    }
+
+    .avator
+    {
+        width: $h;
+        height: $h;
+    }
+
+    .msg_content
+    {
+        display: inline-block;
+        width: 60%;
+        min-height: $h;
+        margin-left: 10px;
+        position: relative;
+        background: $bg;
+
+        &:before
+        {
+            content: '◆';
+            position: absolute;
+            top: 6px;
+            width: 0.5em;
+            overflow: hidden;
+            font-size: 10px;
+            left: -0.5em;
+            color: $bg;
+            text-shadow: $sd;
+        }
     }
 }
