@@ -1362,15 +1362,6 @@
             return new Date().toTimeString().slice(0, 8);
         }
 
-        //定位动画函数
-        function animation() {
-            scrollTop += 12;
-            msgContentEl.scrollTop = scrollTop;
-            if (scrollTop < toScrollTop) {
-                requestAnimationFrame(animation);
-            }
-        }
-
         //刷新信息显示函数
         function refreshMsg(msg, isService, serviceMsg, isAutoMsg) {
             $msgbox.append('<div class="msg_item ' + (isService ? 'service' : 'client') + '">' +
@@ -1382,6 +1373,15 @@
             //定位
             var scrollTop = msgContentEl.scrollTop,
                 toScrollTop = msgContentEl.scrollHeight - msgContentEl.offsetHeight;
+
+            //定位动画函数
+            function animation() {
+                scrollTop += 12;
+                msgContentEl.scrollTop = scrollTop;
+                if (scrollTop < toScrollTop) {
+                    requestAnimationFrame(animation);
+                }
+            }
 
             toScrollTop > scrollTop && requestAnimationFrame(animation);
         }
