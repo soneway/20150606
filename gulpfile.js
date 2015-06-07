@@ -1,6 +1,6 @@
 //npm install gulp gulp-jshint gulp-sass gulp-concat gulp-uglify gulp-rename --save-dev
 
-var debug = 1;
+var debug = 0;
 
 //引入gulp
 var gulp = require('gulp');
