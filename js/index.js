@@ -49,7 +49,7 @@
 
             //定位动画函数
             function animation() {
-                scrollTop += 12;
+                scrollTop += 10;
                 msgContentEl.scrollTop = scrollTop;
                 if (scrollTop < toScrollTop) {
                     requestAnimationFrame(animation);
