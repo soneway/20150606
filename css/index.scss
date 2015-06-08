@@ -13,27 +13,8 @@ $height: 32px;
 @import 'scss/ui', 'scss/iconmoon';
 
 /*复写*/
-//#header
-//{
-//    position: fixed;
-//}
-//
-//
-//#mainbox
-//{
-//    overflow: visible;
-//
-//    .onsidebox &
-//    {
-//        overflow: hidden;
-//    }
-//}
-
 .panel
 {
-    //height: auto;
-    //overflow: visible;
-
     &[data-role=root]
     {
         padding-bottom: 0;
