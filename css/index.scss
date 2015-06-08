@@ -724,20 +724,6 @@ input
         line-height: $h;
     }
 
-    .avator, .msg
-    {
-        vertical-align: top;
-        @include mx_box-shadow($sd);
-        border-radius: 4px;
-    }
-
-    .avator
-    {
-        width: $h;
-        height: $h;
-        @include mx_plt($left: 5px, $top: $h);
-    }
-
     .msg
     {
         $p: 8px;
@@ -746,6 +732,8 @@ input
         min-height: $h;
         position: relative;
         padding: $p;
+        @include mx_box-shadow($sd);
+        border-radius: 4px;
 
         &:before
         {
@@ -784,29 +772,46 @@ input
         }
     }
 
-    .service .msg
+    .service
     {
-        $bg: #fff;
-        background: $bg;
-
         &:before
         {
-            left: -0.5em;
-            color: $bg;
+            content: '';
+            @include mx_plt($left: 5px, $top: $h);
+            width: $h;
+            height: $h;
+            @include mx_box-shadow($sd);
+            border-radius: 4px;
+            background: url(../images/avator.jpg) center center/cover;
+        }
+
+        .msg
+        {
+            $bg: #fff;
+            background: $bg;
+
+            &:before
+            {
+                left: -0.5em;
+                color: $bg;
+            }
         }
     }
 
-    .client .msg
+    .client
     {
-        $bg: $blue;
-        background: $bg;
-        color: #fff;
-
-        &:before
+        .msg
         {
-            text-indent: -0.5em;
-            right: -0.5em;
-            color: $bg;
+            $bg: $blue;
+            background: $bg;
+            color: #fff;
+
+            &:before
+            {
+                text-indent: -0.5em;
+                right: -0.5em;
+                color: $bg;
+            }
         }
     }
 

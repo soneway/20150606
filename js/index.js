@@ -36,27 +36,27 @@
         }
 
         //刷新信息显示函数
-        function refreshMsg(msg, isService, serviceMsg, isAutoMsg) {
-            $msgbox.append('<div class="msg_item ' + (isService ? 'service' : 'client') + '">' +
-            '<p class="timestamp">' + (serviceMsg || '') + getTimeStr() + '</p>' +
-            (isService ? '<img class="avator" src="images/avator.jpg" />' : '') +
-            '<div class="msg' + (isAutoMsg ? ' automsg' : '') + '">' + msg + '</div>' +
+        function refreshMsg(opts) {
+            $msgbox.append('<div class="msg_item ' + (opts.itemClass || 'service') + '">' +
+            '<p class="timestamp">' + (opts.serviceInfo || '') + getTimeStr() + '</p>' +
+            '<div class="msg ' + (opts.msgClass || '') + '">' + opts.msg + '</div>' +
             '</div>');
 
             //定位
             var scrollTop = msgContentEl.scrollTop,
                 toScrollTop = msgContentEl.scrollHeight - msgContentEl.offsetHeight;
 
-            //定位动画函数
-            function animation() {
+            //定位滚动动画函数
+            function scroll() {
                 scrollTop += 10;
                 msgContentEl.scrollTop = scrollTop;
                 if (scrollTop < toScrollTop) {
-                    requestAnimationFrame(animation);
+                    requestAnimationFrame(scroll);
                 }
             }
 
-            toScrollTop > scrollTop && requestAnimationFrame(animation);
+            //定位滚动
+            toScrollTop > scrollTop && requestAnimationFrame(scroll);
         }
 
         return function ($this, isInit) {
@@ -67,27 +67,52 @@
                     '<a>商品问题</a>' +
                     '<a>交易问题</a>' +
                     '<a>游戏/客户端/区服问题</a>' +
-                    '<a>其他问题</a>';
-                refreshMsg(msg, true, '交易猫在线客服-自动回复：', true);
+                    '<a data-type="image">其他问题</a>';
+                refreshMsg({
+                    msg: msg,
+                    serviceInfo: '交易猫在线客服-自动回复：',
+                    msgClass: 'automsg'
+                });
 
                 //问题类型点击
                 $doc.on('click', '.automsg a', function () {
                     $msgbox.html('');
-                    var msg = '您好，我是 客服喵喵 ，请问有什么可以帮助您的吗？';
-                    refreshMsg(msg, true, '交易猫在线客服-喵喵：');
+
+                    var type = this.getAttribute('data-type'), msg;
+                    if (type === 'image') {
+                        msg = '<img src="images/thumb.jpg"/>';
+                        refreshMsg({
+                            msg: msg,
+                            itemClass: 'service image',
+                            serviceInfo: '交易猫在线客服-自动回复：'
+                        });
+                    }
+                    else {
+                        msg = '您好，我是 客服喵喵 ，请问有什么可以帮助您的吗？';
+                        refreshMsg({
+                            msg: msg,
+                            serviceInfo: '交易猫在线客服-自动回复：'
+                        });
+                    }
                 });
 
                 //发送按钮
                 $doc.on('click', '.btn_send', function () {
-                    var txt = $txtMsg.val();
-                    if (txt) {
-                        refreshMsg(txt);
+                    var msg = $txtMsg.val();
+                    if (msg) {
+                        refreshMsg({
+                            msg: msg,
+                            itemClass: 'client'
+                        });
                         //$txtMsg.val('');
 
                         //客服回复
                         setTimeout(function () {
                             var msg = '您好，我是 客服喵喵 ，请问有什么可以帮助您的吗？';
-                            refreshMsg(msg, true, '交易猫在线客服-喵喵：');
+                            refreshMsg({
+                                msg: msg,
+                                serviceInfo: '交易猫在线客服-自动回复：'
+                            });
                         }, 1000);
                     }
                 });
