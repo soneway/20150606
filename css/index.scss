@@ -772,6 +772,25 @@ input
         }
     }
 
+    /*图片类信息*/
+    .image
+    {
+        .msg
+        {
+            display: inline-block;
+            width: auto;
+            padding: 2px;
+
+            img
+            {
+                max-width: 150px;
+                max-height: 100px;
+                border-radius: 4px;
+            }
+        }
+    }
+
+    /*客服信息*/
     .service
     {
         &:before
@@ -798,8 +817,20 @@ input
         }
     }
 
+    /*顾客信息*/
     .client
     {
+
+        &.image
+        {
+            text-align: right;
+
+            .msg
+            {
+                text-align: left;
+            }
+        }
+
         .msg
         {
             $bg: $blue;
@@ -812,17 +843,6 @@ input
                 right: -0.5em;
                 color: $bg;
             }
-        }
-    }
-
-    .image .msg
-    {
-        width: auto;
-
-        img
-        {
-            max-width: 50%;
-            max-height: 100px;
         }
     }
 }

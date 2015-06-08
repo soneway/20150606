@@ -1049,7 +1049,10 @@ a:before {
 
 /*消息盒子*/
 #msgbox {
-  padding: 0 5px; }
+  padding: 0 5px;
+  /*图片类信息*/
+  /*客服信息*/
+  /*顾客信息*/ }
   #msgbox
 .msg_item {
     padding: 0 25px 0 55px;
@@ -1098,6 +1101,19 @@ a {
 a.focus {
         background: #dc313e; }
   #msgbox
+.image
+.msg {
+    display: inline-block;
+    width: auto;
+    padding: 2px; }
+    #msgbox
+.image
+.msg
+img {
+      max-width: 150px;
+      max-height: 100px;
+      border-radius: 4px; }
+  #msgbox
 .service:before {
     content: '';
     position: absolute;
@@ -1119,6 +1135,13 @@ a.focus {
       left: -0.5em;
       color: #fff; }
   #msgbox
+.client.image {
+    text-align: right; }
+    #msgbox
+.client.image
+.msg {
+      text-align: left; }
+  #msgbox
 .client
 .msg {
     background: #4892e6;
@@ -1129,11 +1152,3 @@ a.focus {
       text-indent: -0.5em;
       right: -0.5em;
       color: #4892e6; }
-  #msgbox
-.image .msg {
-    width: auto; }
-    #msgbox
-.image .msg
-img {
-      max-width: 50%;
-      max-height: 100px; }

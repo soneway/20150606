@@ -104,6 +104,11 @@
                             msg: msg,
                             itemClass: 'client'
                         });
+
+                        msg === '1' && refreshMsg({
+                            msg: '<img src="images/thumb.jpg"/>',
+                            itemClass: 'client image'
+                        });
                         //$txtMsg.val('');
 
                         //客服回复
@@ -111,7 +116,7 @@
                             var msg = '您好，我是 客服喵喵 ，请问有什么可以帮助您的吗？';
                             refreshMsg({
                                 msg: msg,
-                                serviceInfo: '交易猫在线客服-自动回复：'
+                                serviceInfo: '交易猫在线客服-喵喵：'
                             });
                         }, 1000);
                     }
