@@ -1015,7 +1015,7 @@ a:before {
   overflow: hidden;
   background: #f6f6f6; }
   #panelservice
-.msg_content {
+#msgbox {
     height: 100%;
     padding-top: 44px;
     padding-bottom: 50px; }
@@ -1047,23 +1047,23 @@ a:before {
       top: 50%;
       margin-top: -16px; }
 
-/*消息盒子*/
-#msgbox {
+/*消息列表*/
+#msg_list {
   padding: 0 5px;
   /*图片类信息*/
   /*客服信息*/
   /*顾客信息*/ }
-  #msgbox
+  #msg_list
 .msg_item {
     padding: 0 25px 0 55px;
     position: relative;
     margin-bottom: 10px; }
-  #msgbox
+  #msg_list
 .timestamp {
     text-align: center;
     color: #888;
     line-height: 36px; }
-  #msgbox
+  #msg_list
 .msg {
     width: 100%;
     min-height: 36px;
@@ -1073,7 +1073,7 @@ a:before {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     /*自动回复样式*/ }
-    #msgbox
+    #msg_list
 .msg:before {
       content: '◆';
       position: absolute;
@@ -1082,11 +1082,11 @@ a:before {
       overflow: hidden;
       font-size: 10px;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
-    #msgbox
+    #msg_list
 .msg.automsg
 h3 {
       line-height: 1.1em; }
-    #msgbox
+    #msg_list
 .msg.automsg
 a {
       display: block;
@@ -1096,24 +1096,37 @@ a {
       line-height: 36px;
       margin-top: 8px;
       border-radius: 2px; }
-      #msgbox
+      #msg_list
 .msg.automsg
 a.focus {
         background: #dc313e; }
-  #msgbox
+  #msg_list
+.image:after {
+    content: 'loading...';
+    display: block;
+    text-indent: 10px;
+    color: #7ea5cd;
+    line-height: 30px; }
+  #msg_list
+.image.ok:after {
+    display: none; }
+  #msg_list
+.image.error:after {
+    content: '图片接收失败'; }
+  #msg_list
 .image
 .msg {
     display: inline-block;
     width: auto;
     padding: 2px; }
-    #msgbox
+    #msg_list
 .image
 .msg
 img {
-      max-width: 150px;
-      max-height: 100px;
+      max-width: 120px;
+      max-height: 80px;
       border-radius: 4px; }
-  #msgbox
+  #msg_list
 .service:before {
     content: '';
     position: absolute;
@@ -1125,28 +1138,28 @@ img {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     background: url(../images/avator.jpg) center center/cover; }
-  #msgbox
+  #msg_list
 .service
 .msg {
     background: #fff; }
-    #msgbox
+    #msg_list
 .service
 .msg:before {
       left: -0.5em;
       color: #fff; }
-  #msgbox
+  #msg_list
 .client.image {
     text-align: right; }
-    #msgbox
+    #msg_list
 .client.image
 .msg {
       text-align: left; }
-  #msgbox
+  #msg_list
 .client
 .msg {
     background: #4892e6;
     color: #fff; }
-    #msgbox
+    #msg_list
 .client
 .msg:before {
       text-indent: -0.5em;

@@ -26,8 +26,9 @@
 
     //客服中心
     load.panelservice = (function () {
-        var msgContentEl = document.getElementsByClassName('msg_content')[0],
-            $msgbox = $('#msgbox'),
+        //消息容器
+        var msgbox = document.getElementById('msgbox'),
+            $msgList = $('#msg_list'),
             $txtMsg = $('#txt_msg');
 
         //获取时间字符串函数
@@ -37,19 +38,25 @@
 
         //刷新信息显示函数
         function refreshMsg(opts) {
-            $msgbox.append('<div class="msg_item ' + (opts.itemClass || 'service') + '">' +
+            var $msgItem = $('<div class="msg_item ' + (opts.itemClass || 'service') + '">' +
             '<p class="timestamp">' + (opts.serviceInfo || '') + getTimeStr() + '</p>' +
             '<div class="msg ' + (opts.msgClass || '') + '">' + opts.msg + '</div>' +
             '</div>');
+            $msgList.append($msgItem);
+
+            //1s后发送ok
+            setTimeout(function () {
+                $msgItem.addClass('ok');
+            }, 1000);
 
             //定位
-            var scrollTop = msgContentEl.scrollTop,
-                toScrollTop = msgContentEl.scrollHeight - msgContentEl.offsetHeight;
+            var scrollTop = msgbox.scrollTop,
+                toScrollTop = msgbox.scrollHeight - msgbox.offsetHeight;
 
             //定位滚动动画函数
             function scroll() {
                 scrollTop += 10;
-                msgContentEl.scrollTop = scrollTop;
+                msgbox.scrollTop = scrollTop;
                 if (scrollTop < toScrollTop) {
                     requestAnimationFrame(scroll);
                 }
@@ -60,23 +67,23 @@
         }
 
         return function ($this, isInit) {
-            if (isInit) {
-                //初始化内容
-                $msgbox.html('');
-                var msg = '<h3>请选择问题的类型</h3>' +
-                    '<a>商品问题</a>' +
-                    '<a>交易问题</a>' +
-                    '<a>游戏/客户端/区服问题</a>' +
-                    '<a data-type="image">其他问题</a>';
-                refreshMsg({
-                    msg: msg,
-                    serviceInfo: '交易猫在线客服-自动回复：',
-                    msgClass: 'automsg'
-                });
+            //初始化内容
+            $msgList.html('');
+            var msg = '<h3>请选择问题的类型</h3>' +
+                '<a>商品问题</a>' +
+                '<a>交易问题</a>' +
+                '<a>游戏/客户端/区服问题</a>' +
+                '<a data-type="image">其他问题</a>';
+            refreshMsg({
+                msg: msg,
+                serviceInfo: '交易猫在线客服-自动回复：',
+                msgClass: 'automsg'
+            });
 
+            if (isInit) {
                 //问题类型点击
                 $doc.on('click', '.automsg a', function () {
-                    $msgbox.html('');
+                    $msgList.html('');
 
                     var type = this.getAttribute('data-type'), msg;
                     if (type === 'image') {
