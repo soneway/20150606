@@ -1371,12 +1371,15 @@
             '</div>');
             $msgList.append($msgItem);
 
-            //1s后发送ok
+            //延迟改变消息状态
             setTimeout(function () {
-                $msgItem.addClass('ok');
+                $msgItem.addClass('error');
+                setTimeout(function () {
+                    $msgItem.addClass('ok');
+                }, 1000);
             }, 1000);
 
-            //定位
+            //定位信息
             var scrollTop = msgbox.scrollTop,
                 toScrollTop = msgbox.scrollHeight - msgbox.offsetHeight;
 
@@ -1438,11 +1441,6 @@
                             msg: msg,
                             itemClass: 'client'
                         });
-
-                        msg === '1' && refreshMsg({
-                            msg: '<img src="images/thumb.jpg"/>',
-                            itemClass: 'client image'
-                        });
                         //$txtMsg.val('');
 
                         //客服回复
@@ -1454,6 +1452,24 @@
                             });
                         }, 1000);
                     }
+                });
+
+                //图片按钮
+                var fileImgEl = document.getElementById('file_img');
+                fileImgEl.onchange = function (evt) {
+                    var file = evt.target.files[0],
+                        fs = new FileReader();
+                    fs.onload = function (evt) {
+                        var msg = '<img src="' + evt.target.result + '"/>';
+                        refreshMsg({
+                            msg: msg,
+                            itemClass: 'client image'
+                        });
+                    };
+                    fs.readAsDataURL(file);
+                };
+                $doc.on('click', '.btn_img', function () {
+                    fileImgEl.click();
                 });
             }
         };

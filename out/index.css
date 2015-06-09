@@ -42,7 +42,9 @@ a:not(:first-child):before, #sidebox
 .txtbox
 a:before, .ptborder_top:before, #panel1
 .list > :not(:first-child):before, #panelservice
-.inputbox:before, #header .btn_login:before, #header
+.inputbox:before, #panelservice
+.add_menu
+a:not(:first-child):before, #header .btn_login:before, #header
 .btn_cs:before, #panel1
 .search:before, #panel1
 .applist
@@ -596,7 +598,9 @@ a:not(:last-child):after {
 /*1px上边框*/
 .ptborder_top:before, #panel1
 .list > :not(:first-child):before, #panelservice
-.inputbox:before {
+.inputbox:before, #panelservice
+.add_menu
+a:not(:first-child):before {
   content: '';
   width: 100%;
   height: 1px;
@@ -1046,6 +1050,45 @@ a:before {
       right: 9px;
       top: 50%;
       margin-top: -16px; }
+  #panelservice
+.add_menu {
+    position: absolute;
+    left: 5px;
+    bottom: 60px;
+    padding: 0 5px;
+    width: 80px;
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+    background: #fff;
+    border-radius: 2px; }
+    #panelservice
+.add_menu:before {
+      content: '◆';
+      position: absolute;
+      left: 10px;
+      bottom: -0.5em;
+      height: 0.5em;
+      width: 1em;
+      overflow: hidden;
+      font-size: 10px;
+      text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+      line-height: 0;
+      color: #fff; }
+    #panelservice
+.add_menu
+a {
+      display: block;
+      position: relative;
+      padding-left: 30px;
+      line-height: 32px; }
+    #panelservice
+.add_menu
+.btn_img {
+      background: url(../images/icon_img.png) 10px center/13px auto no-repeat; }
+    #panelservice
+.add_menu
+.btn_login {
+      background: url(../images/icon_user.png) 10px center/auto 13px no-repeat; }
 
 /*消息列表*/
 #msg_list {

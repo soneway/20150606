@@ -699,6 +699,55 @@ input
             margin-top: -$height / 2;
         }
     }
+
+    .add_menu
+    {
+        $sd: 0 0 1px rgba(0, 0, 0, 0.3);
+        $bg: #fff;
+
+        @include mx_plb($left: 5px, $bottom: $h + 10px);
+        padding: 0 5px;
+        width: 80px;
+        @include mx_box-shadow($sd);
+        background: $bg;
+        border-radius: 2px;
+
+        &:before
+        {
+            content: '◆';
+            @include mx_plb($left: 10px, $bottom: -0.5em);
+            height: 0.5em;
+            width: 1em;
+            overflow: hidden;
+            font-size: 10px;
+            text-shadow: $sd;
+            line-height: 0;
+            color: $bg;
+        }
+
+        a
+        {
+            display: block;
+            position: relative;
+            padding-left: 30px;
+            line-height: 32px;
+
+            &:not(:first-child)
+            {
+                @extend .ptborder_top;
+            }
+        }
+
+        .btn_img
+        {
+            background: url(../images/icon_img.png) 10px center/13px auto no-repeat;
+        }
+
+        .btn_login
+        {
+            background: url(../images/icon_user.png) 10px center/auto 13px no-repeat;
+        }
+    }
 }
 
 
