@@ -711,6 +711,10 @@ input
         @include mx_box-shadow($sd);
         background: $bg;
         border-radius: 2px;
+        visibility: hidden;
+        opacity: 0;
+        height: 0;
+        @extend %ph_transall;
 
         &:before
         {
@@ -723,6 +727,13 @@ input
             text-shadow: $sd;
             line-height: 0;
             color: $bg;
+        }
+
+        &.visible
+        {
+            opacity: 1;
+            visibility: visible;
+            height: auto;
         }
 
         a

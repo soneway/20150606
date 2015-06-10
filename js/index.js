@@ -39,9 +39,9 @@
         //刷新信息显示函数
         function refreshMsg(opts) {
             var $msgItem = $('<div class="msg_item ' + (opts.itemClass || 'service') + '">' +
-            '<p class="timestamp">' + (opts.serviceInfo || '') + getTimeStr() + '</p>' +
-            '<div class="msg ' + (opts.msgClass || '') + '">' + opts.msg + '</div>' +
-            '</div>');
+                '<p class="timestamp">' + (opts.serviceInfo || '') + getTimeStr() + '</p>' +
+                '<div class="msg ' + (opts.msgClass || '') + '">' + opts.msg + '</div>' +
+                '</div>');
             $msgList.append($msgItem);
 
             //延迟改变消息状态
@@ -143,6 +143,17 @@
                 };
                 $doc.on('click', '.btn_img', function () {
                     fileImgEl.click();
+                });
+
+                //加号菜单
+                var $addMenu = $('.add_menu');
+                //显示
+                $doc.on('click','.btn_add',function(){
+                    $addMenu.addClass('visible');
+                });
+
+                $doc.on('click', '#panelservice', function () {
+                    $addMenu.removeClass('visible');
                 });
             }
         };
