@@ -143,8 +143,10 @@
                     fr.readAsDataURL(file);
 
                     //上传
-                    var xhr = new XMLHttpRequest();
+                    var data = new FormData();
+                    data.append('files[]', file);
 
+                    var xhr = new XMLHttpRequest();
                     //完成事件
                     xhr.onload = function () {
                         console.log('ok');
@@ -153,13 +155,12 @@
                     //进程事件
                     xhr.upload.onprogress = function (evt) {
                         if (evt.lengthComputable) {
-                            console.log(evt.loaded);
+                            console.log(evt.loaded + '|' + event.total);
                         }
                     };
 
                     xhr.open('post', 'php/upload.php');
-                    xhr.setRequestHeader("X_FILENAME", file.name);
-                    xhr.send(file)
+                    xhr.send(data)
                 };
                 $doc.on('click', '.btn_img', function () {
                     fileImgEl.click();
