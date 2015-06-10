@@ -39,9 +39,9 @@
         //刷新信息显示函数
         function refreshMsg(opts) {
             var $msgItem = $('<div class="msg_item ' + (opts.itemClass || 'service') + '">' +
-                '<p class="timestamp">' + (opts.serviceInfo || '') + getTimeStr() + '</p>' +
-                '<div class="msg ' + (opts.msgClass || '') + '">' + opts.msg + '</div>' +
-                '</div>');
+            '<p class="timestamp">' + (opts.serviceInfo || '') + getTimeStr() + '</p>' +
+            '<div class="msg ' + (opts.msgClass || '') + '">' + opts.msg + '</div>' +
+            '</div>');
             $msgList.append($msgItem);
 
             //延迟改变消息状态
@@ -76,7 +76,8 @@
                 '<a>商品问题</a>' +
                 '<a>交易问题</a>' +
                 '<a>游戏/客户端/区服问题</a>' +
-                '<a data-type="image">其他问题</a>';
+                '<a>其他问题</a>' +
+                '<a data-type="image">回复图片</a>';
             refreshMsg({
                 msg: msg,
                 serviceInfo: '交易猫在线客服-自动回复：',
@@ -131,15 +132,34 @@
                 var fileImgEl = document.getElementById('file_img');
                 fileImgEl.onchange = function (evt) {
                     var file = evt.target.files[0],
-                        fs = new FileReader();
-                    fs.onload = function (evt) {
+                        fr = new FileReader();
+                    fr.onload = function (evt) {
                         var msg = '<img src="' + evt.target.result + '"/>';
                         refreshMsg({
                             msg: msg,
                             itemClass: 'client image'
                         });
                     };
-                    fs.readAsDataURL(file);
+                    fr.readAsDataURL(file);
+
+                    //上传
+                    var xhr = new XMLHttpRequest();
+
+                    //完成事件
+                    xhr.onload = function () {
+                        console.log('ok');
+                    };
+
+                    //进程事件
+                    xhr.upload.onprogress = function (evt) {
+                        if (evt.lengthComputable) {
+                            console.log(evt.loaded);
+                        }
+                    };
+
+                    xhr.open('post', 'php/upload.php');
+                    xhr.setRequestHeader("X_FILENAME", file.name);
+                    xhr.send(file)
                 };
                 $doc.on('click', '.btn_img', function () {
                     fileImgEl.click();

@@ -714,7 +714,7 @@ input
         visibility: hidden;
         opacity: 0;
         @extend %ph_transall;
-        @include mx_transform(translate3d(0,100%,0));
+        @include mx_transform(translate3d(0, 50%, 0));
 
         &:before
         {
@@ -733,7 +733,7 @@ input
         {
             opacity: 1;
             visibility: visible;
-            @include mx_transform(translate3d(0,0,0));
+            @include mx_transform(translate3d(0, 0, 0));
         }
 
         a
