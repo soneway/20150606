@@ -713,8 +713,8 @@ input
         border-radius: 2px;
         visibility: hidden;
         opacity: 0;
-        height: 0;
         @extend %ph_transall;
+        @include mx_transform(translate3d(0,100%,0));
 
         &:before
         {
@@ -733,7 +733,7 @@ input
         {
             opacity: 1;
             visibility: visible;
-            height: auto;
+            @include mx_transform(translate3d(0,0,0));
         }
 
         a

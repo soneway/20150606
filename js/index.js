@@ -148,12 +148,13 @@
                 //加号菜单
                 var $addMenu = $('.add_menu');
                 //显示
-                $doc.on('click','.btn_add',function(){
+                $doc.on('click', '.btn_add', function () {
                     $addMenu.addClass('visible');
                 });
 
-                $doc.on('click', '#panelservice', function () {
-                    $addMenu.removeClass('visible');
+                $doc.on('click', '#panelservice', function (evt) {
+                    //排除.btn_add按钮
+                    $(evt.target).closest('.btn_add').length === 0 && $addMenu.removeClass('visible');
                 });
             }
         };

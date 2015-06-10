@@ -1064,7 +1064,8 @@ a:before {
     border-radius: 2px;
     visibility: hidden;
     opacity: 0;
-    height: 0; }
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0); }
     #panelservice
 .add_menu:before {
       content: '◆';
@@ -1082,7 +1083,8 @@ a:before {
 .add_menu.visible {
       opacity: 1;
       visibility: visible;
-      height: auto; }
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0); }
     #panelservice
 .add_menu
 a {
