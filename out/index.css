@@ -1293,7 +1293,8 @@ img {
 .client.image
 i {
       background: rgba(0, 0, 0, 0.3);
-      color: #fff; }
+      color: #fff;
+      border-radius: 4px; }
     #msg_list
 .client.image
 .msg:after {

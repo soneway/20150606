@@ -82,9 +82,19 @@
             return sendMsg(msg, nick, 'service');
         }
 
+        //客服图片消息函数
+        function serviceImgMsg(msg, nick) {
+            return sendMsg(msg, nick, 'service image');
+        }
+
         //客户消息函数
         function clientMsg(msg, nick) {
             return sendMsg(msg, nick, 'client');
+        }
+
+        //客户图片消息函数
+        function clientImgMsg(msg, nick) {
+            return sendMsg(msg, nick, 'client image');
         }
 
         return function ($this, isInit) {
@@ -103,7 +113,7 @@
                     $msgList.html('');
                     var type = this.getAttribute('data-type');
                     if (type === 'image') {
-                        var $msgItem = serviceMsg('<img src="images/thumb.jpg"/>', '交易猫在线客服-喵喵：').addClass('image');
+                        var $msgItem = serviceImgMsg('<img src="images/thumb.jpg"/>', '交易猫在线客服-喵喵：');
                         //延迟一定时间改变消息状态
                         setTimeout(function () {
                             $msgItem.addClass('error');
@@ -138,7 +148,7 @@
                         fr = new FileReader();
 
                     fr.onload = function (evt) {
-                        var $msgItem = clientMsg('<img src="' + evt.target.result + '"/><i></i>').addClass('image');
+                        var $msgItem = clientImgMsg('<img src="' + evt.target.result + '"/><i></i>');
 
                         //上传
                         var data = new FormData();
@@ -164,9 +174,7 @@
 
                         //进程事件
                         xhr.upload.onprogress = function (evt) {
-                            if (evt.lengthComputable) {
-                                $msgItem.find('i').text(evt.loaded / event.total * 100 + '%');
-                            }
+                            $msgItem.find('i').text(Math.floor(evt.loaded / event.total * 100) + '%');
                         };
 
                         xhr.open('post', 'php/upload.php');
