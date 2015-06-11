@@ -675,18 +675,18 @@ input
         @extend %ph_palb;
         width: 100%;
         height: $h;
-        padding: $p 70px 0 38px;
+        padding: $p 70px 0 48px;
         background: $head_bgcolor;
         @extend .ptborder_top;
 
         .btn_add
         {
-            $w: 20px;
+            $w: 30px;
             @include mx_plt($left: $p, $top: 50%);
             width: $w;
             height: $w;
             margin-top: -$w / 2;
-            line-height: 18px;
+            line-height: $w - 2px;
             font-size: $w;
             border-radius: $w;
             text-align: center;
