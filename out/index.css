@@ -49,12 +49,14 @@ a:not(:first-child):before, #header .btn_login:before, #header
 .search:before, #panel1
 .applist
 .view_more
+i, #msg_list
+.client.image
 i {
   position: absolute;
   left: 0;
   top: 0; }
 
-.fixed {
+.fixed, #customalert {
   position: fixed;
   left: 0;
   top: 0; }
@@ -80,28 +82,36 @@ a {
   bottom: 0; }
 
 /*宽度高度100%*/
-#mainbox, #loading, #header > div, .panel, #mask, #panel1
+#mainbox, #loading, #header > div, .panel, #mask, #customalert, #panel1
 .applist
 .view_more
+i, #msg_list
+.client.image
 i {
   width: 100%;
   height: 100%; }
 
 /*表格单元格*/
-#loading > div, #mask > div {
+#loading > div, #mask > div, #customalert > div {
   display: table-cell;
   vertical-align: middle;
   line-height: initial; }
 
 /*高度自动撑高*/
+#customalert
+.box {
+  height: auto;
+  overflow: hidden; }
+
 /*all动画*/
-.fade-out, .fade-in, .transition, #loading, #header > div, #panelservice
+.fade-out, .fade-in, .transition, #loading, #header > div, #customalert, #panelservice
 .add_menu {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease; }
 
 /*transform动画*/
-.transform, .panel {
+.transform, .panel, #customalert
+.box {
   -webkit-transition: -webkit-transform 0.3s ease;
   transition: transform 0.3s ease; }
 
@@ -124,6 +134,8 @@ a.msg:before {
 #panel1
 .applist
 .view_more
+i, #msg_list
+.client.image
 i {
   display: -webkit-box;
   -webkit-box-align: center;
@@ -511,6 +523,61 @@ iframe {
 
 .icon-menu:before {
   content: '\e601'; }
+
+/*提示框*/
+#customalert {
+  display: table;
+  color: #333;
+  background-color: rgba(0, 0, 0, 0.7);
+  /*动画*/
+  opacity: 0;
+  z-index: -1;
+  /*显示时*/ }
+  #customalert > div {
+    text-align: center; }
+  #customalert
+.box {
+    display: inline-block;
+    width: 280px;
+    padding: 0 0 15px 0;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.95);
+    /*动画*/
+    -webkit-transform: scale3d(0, 0, 1);
+    transform: scale3d(0, 0, 1); }
+  #customalert.visible {
+    opacity: 1;
+    z-index: 9999; }
+    #customalert.visible
+.box {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1); }
+
+#customalert-title {
+  line-height: 40px;
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5); }
+
+#customalert-content {
+  padding: 15px 20px; }
+
+#customalert-btnok, #customalert-btncancel {
+  width: 110px;
+  font-size: 17px;
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.9);
+  color: #333; }
+
+#customalert-btnok {
+  margin-right: 10px; }
+
+.alert
+#customalert-btncancel {
+  display: none; }
+
+.alert
+#customalert-btnok {
+  width: 230px; }
 
 /*复写*/
 .panel[data-role=root] {
@@ -1018,7 +1085,8 @@ a:before {
 #panelservice {
   padding-top: 0;
   overflow: hidden;
-  background: #f6f6f6; }
+  background: #f6f6f6;
+  cursor: pointer; }
   #panelservice
 #msgbox {
     height: 100%;
@@ -1113,64 +1181,57 @@ a {
     padding: 0 25px 0 55px;
     position: relative;
     margin-bottom: 10px; }
-  #msg_list
+    #msg_list
+.msg_item
 .timestamp {
-    text-align: center;
-    color: #888;
-    line-height: 36px; }
-  #msg_list
+      text-align: center;
+      color: #888;
+      line-height: 36px; }
+    #msg_list
+.msg_item
 .msg {
-    width: 100%;
-    min-height: 36px;
-    position: relative;
-    padding: 8px;
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    /*自动回复样式*/ }
-    #msg_list
+      width: 100%;
+      min-height: 36px;
+      position: relative;
+      padding: 8px;
+      -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      /*自动回复样式*/ }
+      #msg_list
+.msg_item
 .msg:before {
-      content: '◆';
-      position: absolute;
-      top: 6px;
-      width: 0.5em;
-      overflow: hidden;
-      font-size: 10px;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
-    #msg_list
+        content: '◆';
+        position: absolute;
+        top: 6px;
+        width: 0.5em;
+        overflow: hidden;
+        font-size: 10px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
+      #msg_list
+.msg_item
 .msg
 .automsg
 h3 {
-      line-height: 1.1em; }
-    #msg_list
+        line-height: 1.1em; }
+      #msg_list
+.msg_item
 .msg
 .automsg
 a {
-      display: block;
-      text-align: center;
-      background: #4892e6;
-      color: #fff;
-      line-height: 36px;
-      margin-top: 8px;
-      border-radius: 2px; }
-      #msg_list
+        display: block;
+        text-align: center;
+        background: #4892e6;
+        color: #fff;
+        line-height: 36px;
+        margin-top: 8px;
+        border-radius: 2px; }
+        #msg_list
+.msg_item
 .msg
 .automsg
 a.focus {
-        background: #dc313e; }
-  #msg_list
-.image:after {
-    content: 'loading...';
-    display: block;
-    text-indent: 10px;
-    color: #7ea5cd;
-    line-height: 30px; }
-  #msg_list
-.image.ok:after {
-    display: none; }
-  #msg_list
-.image.error:after {
-    content: '图片接收失败'; }
+          background: #dc313e; }
   #msg_list
 .image
 .msg {
@@ -1185,38 +1246,95 @@ img {
       max-height: 80px;
       border-radius: 4px; }
   #msg_list
+.service {
+    /*图片类信息*/ }
+    #msg_list
+.service.image:after {
+      content: 'loading...';
+      display: block;
+      text-indent: 10px;
+      color: #7ea5cd;
+      line-height: 30px; }
+    #msg_list
+.service.image.error:after {
+      content: '图片接收失败'; }
+    #msg_list
+.service.image.ok:after {
+      display: none; }
+    #msg_list
 .service:before {
-    content: '';
-    position: absolute;
-    left: 5px;
-    top: 36px;
-    width: 36px;
-    height: 36px;
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    background: url(../images/avator.jpg) center center/cover; }
-  #msg_list
-.service
-.msg {
-    background: #fff; }
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 36px;
+      width: 36px;
+      height: 36px;
+      -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      background: url(../images/avator.jpg) center center/cover; }
     #msg_list
 .service
+.msg {
+      background: #fff; }
+      #msg_list
+.service
 .msg:before {
-      left: -0.5em;
-      color: #fff; }
+        left: -0.5em;
+        color: #fff; }
+      #msg_list
+.service
+.msg.ok {
+        display: none; }
   #msg_list
 .client.image {
     text-align: right; }
     #msg_list
 .client.image
-.msg {
-      text-align: left; }
+i {
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff; }
+    #msg_list
+.client.image
+.msg:after {
+      position: absolute;
+      left: -21px;
+      top: 50%;
+      width: 16px;
+      height: 16px;
+      margin-top: -8px;
+      text-align: center;
+      line-height: 16px;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 16px; }
+    #msg_list
+.client.image.ok
+.msg:after {
+      content: '√';
+      background: #82bf3b; }
+    #msg_list
+.client.image.ok
+i {
+      display: none; }
+    #msg_list
+.client.image.error {
+      cursor: pointer; }
+      #msg_list
+.client.image.error
+.msg:after {
+        content: '!';
+        background: #d8474a; }
+      #msg_list
+.client.image.error
+i {
+        display: none; }
   #msg_list
 .client
 .msg {
     background: #4892e6;
-    color: #fff; }
+    color: #fff;
+    position: relative; }
     #msg_list
 .client
 .msg:before {

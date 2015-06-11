@@ -10,7 +10,7 @@ $gray: #f2f2f2;
 $height: 32px;
 
 /*外部引入*/
-@import 'scss/ui', 'scss/iconmoon';
+@import 'scss/ui', 'scss/iconmoon', 'scss/customalert';
 
 /*复写*/
 .panel
@@ -662,6 +662,7 @@ input
     padding-top: 0;
     overflow: hidden;
     background: #f6f6f6;
+    cursor: pointer;
 
     #msgbox
     {
@@ -775,59 +776,77 @@ input
         padding: 0 25px 0 55px;
         position: relative;
         margin-bottom: 10px;
-    }
 
-    .timestamp
-    {
-        text-align: center;
-        color: #888;
-        line-height: $h;
-    }
-
-    .msg
-    {
-        $p: 8px;
-
-        width: 100%;
-        min-height: $h;
-        position: relative;
-        padding: $p;
-        @include mx_box-shadow($sd);
-        border-radius: 4px;
-
-        &:before
+        .timestamp
         {
-            content: '◆';
-            position: absolute;
-            top: 6px;
-            width: 0.5em;
-            overflow: hidden;
-            font-size: 10px;
-            text-shadow: $sd;
+            text-align: center;
+            color: #888;
+            line-height: $h;
         }
 
-        /*自动回复样式*/
-        .automsg
+        .msg
         {
-            h3
+            $p: 8px;
+
+            width: 100%;
+            min-height: $h;
+            position: relative;
+            padding: $p;
+            @include mx_box-shadow($sd);
+            border-radius: 4px;
+
+            &:before
             {
-                line-height: 1.1em;
+                content: '◆';
+                position: absolute;
+                top: 6px;
+                width: 0.5em;
+                overflow: hidden;
+                font-size: 10px;
+                text-shadow: $sd;
             }
 
-            a
+            /*自动回复样式*/
+            .automsg
             {
-                display: block;
-                text-align: center;
-                background: $blue;
-                color: #fff;
-                line-height: $h;
-                margin-top: $p;
-                border-radius: 2px;
-
-                &.focus
+                h3
                 {
-                    background: $red;
+                    line-height: 1.1em;
                 }
+
+                a
+                {
+                    display: block;
+                    text-align: center;
+                    background: $blue;
+                    color: #fff;
+                    line-height: $h;
+                    margin-top: $p;
+                    border-radius: 2px;
+
+                    &.focus
+                    {
+                        background: $red;
+                    }
+                }
+            }
+        }
+    }
+
+    /*图片类信息*/
+    .image
+    {
+        .msg
+        {
+            display: inline-block;
+            width: auto;
+            padding: 2px;
+
+            img
+            {
+                max-width: 120px;
+                max-height: 80px;
+                border-radius: 4px;
             }
         }
     }
@@ -847,28 +866,14 @@ input
                 line-height: 30px;
             }
 
-            &.ok:after
-            {
-                display: none;
-            }
-
             &.error:after
             {
                 content: '图片接收失败';
             }
 
-            .msg
+            &.ok:after
             {
-                display: inline-block;
-                width: auto;
-                padding: 2px;
-
-                img
-                {
-                    max-width: 120px;
-                    max-height: 80px;
-                    border-radius: 4px;
-                }
+                display: none;
             }
         }
 
@@ -893,21 +898,74 @@ input
                 left: -0.5em;
                 color: $bg;
             }
+
+            &.ok
+            {
+                display: none;
+            }
         }
     }
 
     /*顾客信息*/
     .client
     {
-
         &.image
         {
             text-align: right;
 
-            .msg
+            i
             {
-                text-align: left;
+                @extend %ph_palt;
+                @extend %ph_full;
+                @extend %ph_center;
+                background: rgba(0, 0, 0, 0.3);
+                color: #fff;
             }
+
+            $w: 16px;
+            .msg:after
+            {
+                @include mx_plt($left: -$w - 5px, $top: 50%);
+                width: $w;
+                height: $w;
+                margin-top: -$w / 2;
+                text-align: center;
+                line-height: $w;
+                color: #fff;
+                font-weight: bold;
+                border-radius: $w;
+            }
+
+            &.ok
+            {
+                .msg:after
+                {
+                    content: '√';
+                    background: #82bf3b;
+                }
+
+                i
+                {
+                    display: none;
+                }
+            }
+
+            &.error
+            {
+                cursor: pointer;
+
+                .msg:after
+                {
+                    content: '!';
+                    background: #d8474a;
+                }
+
+                i
+                {
+                    display: none;
+                }
+            }
+
         }
 
         .msg
@@ -915,6 +973,7 @@ input
             $bg: $blue;
             background: $bg;
             color: #fff;
+            position: relative;
 
             &:before
             {

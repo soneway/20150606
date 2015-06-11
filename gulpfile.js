@@ -38,7 +38,7 @@ var uglify = require('gulp-uglify');
 //var rename = require('gulp-rename');
 gulp.task('js', function () {
     //合并
-    var task = gulp.src(['js/lib/soneway.js', 'js/lib/ui.js', 'js/index.js'])
+    var task = gulp.src(['js/lib/soneway.js', 'js/lib/customalert.js', 'js/lib/ui.js', 'js/index.js'])
         .pipe(concat('index.js'))
         .pipe(gulp.dest('out'));
 

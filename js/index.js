@@ -136,33 +136,58 @@
                 fileImgEl.onchange = function (evt) {
                     var file = evt.target.files[0],
                         fr = new FileReader();
+
                     fr.onload = function (evt) {
-                        clientMsg('<img src="' + evt.target.result + '"/><i></i>').addClass('image');
+                        var $msgItem = clientMsg('<img src="' + evt.target.result + '"/><i></i>').addClass('image');
+
+                        //上传
+                        var data = new FormData();
+                        data.append('files[]', file);
+
+                        var xhr = new XMLHttpRequest();
+
+                        //完成事件
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState === 4 && xhr.status === 200) {
+                                setTimeout(function () {
+                                    $msgItem.addClass('ok');
+                                    setTimeout(function () {
+                                        $msgItem.removeClass('ok').addClass('error');
+                                    }, 3000);
+                                }, 1000);
+                            }
+                        };
+
+                        xhr.onerror = function () {
+                            $msgItem.addClass('error');
+                        };
+
+                        //进程事件
+                        xhr.upload.onprogress = function (evt) {
+                            if (evt.lengthComputable) {
+                                $msgItem.find('i').text(evt.loaded / event.total * 100 + '%');
+                            }
+                        };
+
+                        xhr.open('post', 'php/upload.php');
+                        xhr.send(data)
                     };
                     fr.readAsDataURL(file);
-
-                    //上传
-                    var data = new FormData();
-                    data.append('files[]', file);
-
-                    var xhr = new XMLHttpRequest();
-                    //完成事件
-                    xhr.onload = function () {
-                        console.log('ok');
-                    };
-
-                    //进程事件
-                    xhr.upload.onprogress = function (evt) {
-                        if (evt.lengthComputable) {
-                            console.log(evt.loaded + '|' + event.total);
-                        }
-                    };
-
-                    xhr.open('post', 'php/upload.php');
-                    xhr.send(data)
                 };
                 $doc.on('click', '.btn_img', function () {
                     fileImgEl.click();
+                });
+
+                //重试发送
+                $doc.on('click', '.error', function () {
+                    var me = this;
+                    $.customalert({
+                        content: '重新发送该信息?',
+                        isAlert: false,
+                        btnOkClick: function () {
+                            $(me).removeClass('error').addClass('ok');
+                        }
+                    });
                 });
 
                 //加号菜单
