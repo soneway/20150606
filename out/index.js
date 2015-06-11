@@ -1431,6 +1431,7 @@
                     var type = this.getAttribute('data-type');
                     if (type === 'image') {
                         var $msgItem = serviceMsg('<img src="images/thumb.jpg"/>', '交易猫在线客服-喵喵：').addClass('image');
+                        //延迟一定时间改变消息状态
                         setTimeout(function () {
                             $msgItem.addClass('error');
                             setTimeout(function () {
@@ -1463,11 +1464,7 @@
                     var file = evt.target.files[0],
                         fr = new FileReader();
                     fr.onload = function (evt) {
-                        var msg = '<img src="' + evt.target.result + '"/><i></i>';
-                        refreshMsg({
-                            msg: msg,
-                            itemClass: 'client image'
-                        });
+                        clientMsg('<img src="' + evt.target.result + '"/><i></i>').addClass('image');
                     };
                     fr.readAsDataURL(file);
 

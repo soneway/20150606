@@ -832,46 +832,46 @@ input
         }
     }
 
-    /*图片类信息*/
-    .image
-    {
-        &:after
-        {
-            content: 'loading...';
-            display: block;
-            text-indent: 10px;
-            color: #7ea5cd;
-            line-height: 30px;
-        }
-
-        &.ok:after
-        {
-            display: none;
-        }
-
-        &.error:after
-        {
-            content: '图片接收失败';
-        }
-
-        .msg
-        {
-            display: inline-block;
-            width: auto;
-            padding: 2px;
-
-            img
-            {
-                max-width: 120px;
-                max-height: 80px;
-                border-radius: 4px;
-            }
-        }
-    }
-
     /*客服信息*/
     .service
     {
+        /*图片类信息*/
+        &.image
+        {
+            &:after
+            {
+                content: 'loading...';
+                display: block;
+                text-indent: 10px;
+                color: #7ea5cd;
+                line-height: 30px;
+            }
+
+            &.ok:after
+            {
+                display: none;
+            }
+
+            &.error:after
+            {
+                content: '图片接收失败';
+            }
+
+            .msg
+            {
+                display: inline-block;
+                width: auto;
+                padding: 2px;
+
+                img
+                {
+                    max-width: 120px;
+                    max-height: 80px;
+                    border-radius: 4px;
+                }
+            }
+        }
+
         &:before
         {
             content: '';
