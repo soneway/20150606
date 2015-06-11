@@ -686,11 +686,11 @@ input
             width: $w;
             height: $w;
             margin-top: -$w / 2;
-            line-height: $w - 2px;
+            line-height: $w;
             font-size: $w;
             border-radius: $w;
             text-align: center;
-            border: 1px solid $color;
+            @include mx_box-shadow(0 0 2px $color);
         }
 
         .btn_send
@@ -807,7 +807,7 @@ input
         }
 
         /*自动回复样式*/
-        &.automsg
+        .automsg
         {
             h3
             {

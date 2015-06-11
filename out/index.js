@@ -1363,21 +1363,18 @@
             return new Date().toTimeString().slice(0, 8);
         }
 
-        //刷新信息显示函数
-        function refreshMsg(opts) {
-            var $msgItem = $('<div class="msg_item ' + (opts.itemClass || 'service') + '">' +
-                '<p class="timestamp">' + (opts.serviceInfo || '') + getTimeStr() + '</p>' +
-                '<div class="msg ' + (opts.msgClass || '') + '">' + opts.msg + '</div>' +
-                '</div>');
-            $msgList.append($msgItem);
+        //获取消息item函数
+        function getMsgItem(opts) {
+            return $('<div class="msg_item ' + opts.itemClass + '">' +
+            '<p class="timestamp">' + (opts.nickname || '') + getTimeStr() + '</p>' +
+            '<div class="msg">' + opts.msg + '</div>' +
+            '</div>');
+        }
 
-            //延迟改变消息状态
-            setTimeout(function () {
-                $msgItem.addClass('error');
-                setTimeout(function () {
-                    $msgItem.addClass('ok');
-                }, 1000);
-            }, 1000);
+        //刷新信息显示函数
+        function refreshMsgList($msgItem) {
+
+            $msgList.append($msgItem);
 
             //定位信息
             var scrollTop = msgbox.scrollTop,
@@ -1394,43 +1391,55 @@
 
             //定位滚动
             toScrollTop > scrollTop && requestAnimationFrame(scroll);
+
+            return $msgItem;
+        }
+
+        //发送信息函数
+        function sendMsg(msg, nick, itemClass) {
+            return refreshMsgList(getMsgItem({
+                itemClass: itemClass,
+                nickname: nick,
+                msg: msg
+            }));
+        }
+
+        //客服消息函数
+        function serviceMsg(msg, nick) {
+            return sendMsg(msg, nick, 'service');
+        }
+
+        //客户消息函数
+        function clientMsg(msg, nick) {
+            return sendMsg(msg, nick, 'client');
         }
 
         return function ($this, isInit) {
             //初始化内容
             $msgList.html('');
-            var msg = '<h3>请选择问题的类型</h3>' +
-                '<a>商品问题</a>' +
-                '<a>交易问题</a>' +
-                '<a>游戏/客户端/区服问题</a>' +
-                '<a>其他问题</a>' +
-                '<a data-type="image">回复图片</a>';
-            refreshMsg({
-                msg: msg,
-                serviceInfo: '交易猫在线客服-自动回复：',
-                msgClass: 'automsg'
-            });
+            serviceMsg('<div class="automsg"><h3>请选择问题的类型</h3>' +
+            '<a>商品问题</a>' +
+            '<a>交易问题</a>' +
+            '<a>游戏/客户端/区服问题</a>' +
+            '<a>其他问题</a>' +
+            '<a data-type="image">回复图片</a></div>', '交易猫在线客服-自动回复：');
 
             if (isInit) {
                 //问题类型点击
                 $doc.on('click', '.automsg a', function () {
                     $msgList.html('');
-
-                    var type = this.getAttribute('data-type'), msg;
+                    var type = this.getAttribute('data-type');
                     if (type === 'image') {
-                        msg = '<img src="images/thumb.jpg"/>';
-                        refreshMsg({
-                            msg: msg,
-                            itemClass: 'service image',
-                            serviceInfo: '交易猫在线客服-自动回复：'
-                        });
+                        var $msgItem = serviceMsg('<img src="images/thumb.jpg"/>', '交易猫在线客服-喵喵：').addClass('image');
+                        setTimeout(function () {
+                            $msgItem.addClass('error');
+                            setTimeout(function () {
+                                $msgItem.addClass('ok');
+                            }, 1000);
+                        }, 1000);
                     }
                     else {
-                        msg = '您好，我是 客服喵喵 ，请问有什么可以帮助您的吗？';
-                        refreshMsg({
-                            msg: msg,
-                            serviceInfo: '交易猫在线客服-自动回复：'
-                        });
+                        serviceMsg('您好，我是 客服喵喵 ，请问有什么可以帮助您的吗？', '交易猫在线客服-喵喵：');
                     }
                 });
 
@@ -1438,19 +1447,12 @@
                 $doc.on('click', '.btn_send', function () {
                     var msg = $txtMsg.val();
                     if (msg) {
-                        refreshMsg({
-                            msg: msg,
-                            itemClass: 'client'
-                        });
+                        clientMsg(msg);
                         //$txtMsg.val('');
 
                         //客服回复
                         setTimeout(function () {
-                            var msg = '您好，我是 客服喵喵 ，请问有什么可以帮助您的吗？';
-                            refreshMsg({
-                                msg: msg,
-                                serviceInfo: '交易猫在线客服-喵喵：'
-                            });
+                            serviceMsg('您好，我是 客服喵喵 ，请问有什么可以帮助您的吗？', '交易猫在线客服-喵喵：');
                         }, 1000);
                     }
                 });
@@ -1461,7 +1463,7 @@
                     var file = evt.target.files[0],
                         fr = new FileReader();
                     fr.onload = function (evt) {
-                        var msg = '<img src="' + evt.target.result + '"/>';
+                        var msg = '<img src="' + evt.target.result + '"/><i></i>';
                         refreshMsg({
                             msg: msg,
                             itemClass: 'client image'
