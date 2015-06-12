@@ -1539,6 +1539,7 @@
             '<a>其他问题</a>' +
             '<a data-type="image">回复图片</a></div>', '交易猫在线客服-自动回复：');
 
+            //第一次加载面板
             if (isInit) {
                 //问题类型点击
                 $doc.on('click', '.automsg a', function () {
@@ -1551,8 +1552,8 @@
                             $msgItem.addClass('error');
                             setTimeout(function () {
                                 $msgItem.addClass('ok');
-                            }, 1000);
-                        }, 1000);
+                            }, 2000);
+                        }, 2000);
                     }
                     else {
                         serviceMsg('您好，我是 客服喵喵 ，请问有什么可以帮助您的吗？', '交易猫在线客服-喵喵：');
@@ -1569,11 +1570,11 @@
                         //客服回复
                         setTimeout(function () {
                             serviceMsg('您好，我是 客服喵喵 ，请问有什么可以帮助您的吗？', '交易猫在线客服-喵喵：');
-                        }, 1000);
+                        }, 2000);
                     }
                 });
 
-                //图片按钮
+                //文件上传
                 var fileImgEl = document.getElementById('file_img');
                 fileImgEl.onchange = function (evt) {
                     var file = evt.target.files[0],
@@ -1586,6 +1587,7 @@
                         var data = new FormData();
                         data.append('files[]', file);
 
+                        //xhr请求对象
                         var xhr = new XMLHttpRequest();
 
                         //完成事件
@@ -1595,11 +1597,12 @@
                                     $msgItem.addClass('ok');
                                     setTimeout(function () {
                                         $msgItem.removeClass('ok').addClass('error');
-                                    }, 3000);
-                                }, 1000);
+                                    }, 2000);
+                                }, 2000);
                             }
                         };
 
+                        //错误事件
                         xhr.onerror = function () {
                             $msgItem.addClass('error');
                         };
@@ -1614,6 +1617,8 @@
                     };
                     fr.readAsDataURL(file);
                 };
+
+                //图片按钮
                 $doc.on('click', '.btn_img', function () {
                     fileImgEl.click();
                 });
